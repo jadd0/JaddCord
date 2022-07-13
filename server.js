@@ -1,38 +1,55 @@
-const auth = require("./serviceAccountKey.json");
+const auth = require("./authenticate.js");
+const cookieParser = require("cookie-parser");
+const csrf = require("csurf");
+const serviceAccount = require("./serviceAccountKey.json");
+const bodyParser = require("body-parser");
+const express = require("express");
+const admin = require("firebase-admin");
 
-const express = require('express');
+const csrfMiddleware = csrf({ cookie: true });
+
 const app = express();
+app.engine("html", require("ejs").renderFile);
+app.use(express.static("static"));
+app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(csrfMiddleware);
 
-console
+admin.initializeApp({
+	credential: admin.credential.cert(serviceAccount),
+	databaseURL: "https://server-auth-41acc.firebaseio.com",
+});
+
 
 const PORT = 3000
 
+
 app.all("*", (req, res, next) => {
-	cookie(req, res, next)
+	auth.cookie(req, res, next)
 });
 
 app.get("/login", function (req, res) {
-	login(req, res)
+	auth.login(req, res)
 });
 
 app.get("/signup", function (req, res) {
-	signup(req, res)
+	auth.signup(req, res)
 });
 
 app.get("/profile", function (req, res) {
-	profile(req, res)
+	auth.profile(req, res)
 });
 
 app.get("/", function (req, res) {
-	main(req, res)
+	auth.main(req, res)
 });
 
 app.post("/sessionLogin", (req, res) => {
-	loginPOST(req, res)
+	auth.loginPOST(req, res)
 });
 
 app.get("/sessionLogout", (req, res) => {
-	logoutGET(req, res)
+	auth.logoutGET(req, res)
 });
 
 app.listen(PORT, () => {

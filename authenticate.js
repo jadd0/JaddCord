@@ -1,27 +1,3 @@
-const cookieParser = require("cookie-parser");
-const csrf = require("csurf");
-const bodyParser = require("body-parser");
-const express = require("express");
-const admin = require("firebase-admin");
-const serviceAccount = require("./serviceAccountKey.json");
-
-const app = express();
-
-admin.initializeApp({
-	credential: admin.credential.cert(serviceAccount),
-	databaseURL: "https://server-auth-41acc.firebaseio.com",
-});
-
-const csrfMiddleware = csrf({ cookie: true });
-
-
-app.engine("html", require("ejs").renderFile);
-app.use(express.static("static"));
-
-app.use(bodyParser.json());
-app.use(cookieParser());
-app.use(csrfMiddleware);
-
 function cookie(req, res, next) {
 	res.cookie("XSRF-TOKEN", req.csrfToken());
 	next();
@@ -81,11 +57,9 @@ function logoutGET(req, res) {
 }
 
 
-module.exports = {
-	cookie: cookie,
-	login: login,
-	signup: signup,
-	main: main,
-	loginPOST: loginPOST,
-	logoutPOST: logoutPOST
-}
+exports.cookie = cookie
+exports.login = login
+exports.signup = signup
+exports.main = main
+exports.loginPOST = loginPOST
+exports.logoutGET = logoutGET
