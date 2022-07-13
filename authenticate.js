@@ -1,17 +1,40 @@
-function cookie(req, res, next) {
+const cookieParser = require("cookie-parser");
+const csrf = require("csurf");
+const serviceAccount = require("./serviceAccountKey.json");
+const bodyParser = require("body-parser");
+const express = require("express");
+const admin = require("firebase-admin");
+
+const router = express.Router();
+
+admin.initializeApp({
+	credential: admin.credential.cert(serviceAccount),
+	databaseURL: "https://server-auth-41acc.firebaseio.com",
+});
+
+const csrfMiddleware = csrf({ cookie: true });
+
+router.use(express.static("static"));
+router.use(bodyParser.json());
+router.use(cookieParser());
+router.use(csrfMiddleware);
+
+
+
+router.all("*", (req, res, next) => {
 	res.cookie("XSRF-TOKEN", req.csrfToken());
 	next();
-}
+});
 
-function login(req, res) {
+router.get("/login", function (req, res) {
 	res.render("login.html");
-}
+});
 
-function signup(req, res) {
+router.get("/signup", function (req, res) {
 	res.render("signup.html");
-}
+});
 
-function profile(req, res) {
+router.get("/profile", function (req, res) {
 	const sessionCookie = req.cookies.session || "";
 
 	admin
@@ -24,13 +47,13 @@ function profile(req, res) {
 		.catch((error) => {
 			res.redirect("/login");
 		});
-}
+});
 
-function main(req, res) {
+router.get("/", function (req, res) {
 	res.render("index.html");
-}
+});
 
-function loginPOST(req, res) {
+router.post("/sessionLogin", (req, res) => {
 	console.log("hello");
 	const idToken = req.body.idToken.toString();
 
@@ -49,17 +72,12 @@ function loginPOST(req, res) {
 				res.status(401).send("UNAUTHORIZED REQUEST!");
 			}
 		);
-}
+});
 
-function logoutGET(req, res) {
+router.get("/sessionLogout", (req, res) => {
 	res.clearCookie("session");
 	res.redirect("/login");
-}
+});
 
 
-exports.cookie = cookie
-exports.login = login
-exports.signup = signup
-exports.main = main
-exports.loginPOST = loginPOST
-exports.logoutGET = logoutGET
+module.exports = router;
