@@ -58,7 +58,7 @@ app.get("/", function (req, res) {
 app.post("/sessionLogin", (req, res) => {
   console.log("hello")
   const idToken = req.body.idToken.toString();
-
+  
   const expiresIn = 60 * 60 * 24 * 5 * 1000;
 
   admin
