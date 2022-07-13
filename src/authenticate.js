@@ -5,6 +5,8 @@ const express = require("express");
 const admin = require("firebase-admin");
 const serviceAccount = require("./serviceAccountKey.json");
 
+const app = express();
+
 admin.initializeApp({
 	credential: admin.credential.cert(serviceAccount),
 	databaseURL: "https://server-auth-41acc.firebaseio.com",
@@ -12,8 +14,6 @@ admin.initializeApp({
 
 const csrfMiddleware = csrf({ cookie: true });
 
-const PORT = process.env.PORT || 3000;
-const app = express();
 
 app.engine("html", require("ejs").renderFile);
 app.use(express.static("static"));
@@ -78,4 +78,14 @@ function loginPOST(req, res) {
 function logoutGET(req, res) {
 	res.clearCookie("session");
 	res.redirect("/login");
+}
+
+
+module.exports = {
+	cookie: cookie,
+	login: login,
+	signup: signup,
+	main: main,
+	loginPOST: loginPOST,
+	logoutPOST: logoutPOST
 }
