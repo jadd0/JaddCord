@@ -1,0 +1,21 @@
+users:
+    create user DB
+    create user OOP system
+    add id and username to each user
+
+design:
+    opening page
+    login page
+    friends page
+    messaging page
+    profile page
+    settings page
+    other user profile page
+
+server:
+    websocket setup
+    client to client communication through the server
+    encrypt each message and decrypt
+    store encyrpted messages to:
+        object
+        DB

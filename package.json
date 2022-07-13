@@ -13,8 +13,8 @@
     "nodemon": "^2.0.18"
   },
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "start": "node src/server.js",
+    "dev": "node src/server.js"
   },
   "eslintConfig": {
     "extends": "react-app"
