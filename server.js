@@ -1,8 +1,6 @@
 const express = require('express');
 const auth = require("./src/authenticate.js");
-const socketApp = require('./src/socket.js');
-
-console.log(io)
+// const socketApp = require('./src/socket.js');
 
 const app = express();
 
