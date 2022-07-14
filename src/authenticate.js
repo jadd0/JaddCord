@@ -1,6 +1,6 @@
 const cookieParser = require("cookie-parser");
 const csrf = require("csurf");
-const serviceAccount = require("./serviceAccountKey.json");
+const serviceAccount = require("../serviceAccountKey.json");
 const bodyParser = require("body-parser");
 const express = require("express");
 const admin = require("firebase-admin");
@@ -18,8 +18,6 @@ router.use(express.static("static"));
 router.use(bodyParser.json());
 router.use(cookieParser());
 router.use(csrfMiddleware);
-
-
 
 router.all("*", (req, res, next) => {
 	res.cookie("XSRF-TOKEN", req.csrfToken());
@@ -78,6 +76,5 @@ router.get("/sessionLogout", (req, res) => {
 	res.clearCookie("session");
 	res.redirect("/login");
 });
-
 
 module.exports = router;
