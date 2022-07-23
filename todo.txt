@@ -19,3 +19,16 @@ server:
     store encyrpted messages to:
         object
         DB
+    ***
+    Each message is sent to DB (or obj for now):
+         client updates every .1s to check for update
+         if update:
+              updates messages
+         else: nothing
+
+
+
+other ideas:
+    time spent on, same as reddit
+    longer on, avatars
+    

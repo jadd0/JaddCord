@@ -1,4 +1,5 @@
-<div>
-    <h1></h1>
-    <input>
-</div>
+<script>
+	let name = 'world';
+</script>
+
+<h1>Hello {name}!</h1>

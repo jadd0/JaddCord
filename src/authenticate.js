@@ -4,6 +4,7 @@ const serviceAccount = require("../serviceAccountKey.json");
 const bodyParser = require("body-parser");
 const express = require("express");
 const admin = require("firebase-admin");
+const path = require("path");
 
 const router = express.Router();
 
@@ -48,7 +49,7 @@ router.get("/profile", function (req, res) {
 });
 
 router.get("/", function (req, res) {
-	res.render("index.html");
+	res.sendFile( path.join(__dirname, "../svelte", "src", "app.html") );
 });
 
 router.post("/sessionLogin", (req, res) => {
