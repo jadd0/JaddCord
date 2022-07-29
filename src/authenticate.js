@@ -5,6 +5,19 @@ const bodyParser = require("body-parser");
 const express = require("express");
 const admin = require("firebase-admin");
 const path = require("path");
+const svelteViewEngine = require("svelte-view-engine");
+
+app.engine(type, svelteViewEngine({
+	template: "./template.html", // see Root template below
+	dir,
+	type,
+	init: true,
+	watch: true,
+	liveReload: true,
+	svelte: {
+		// rollup-plugin-svelte config
+	},
+}));
 
 const router = express.Router();
 
@@ -49,7 +62,7 @@ router.get("/profile", function (req, res) {
 });
 
 router.get("/", function (req, res) {
-	res.sendFile( path.join(__dirname, "../svelte", "src", "app.html") );
+	res.render( path.join(__dirname, "../svelte", "build", "index.html") );
 });
 
 router.post("/sessionLogin", (req, res) => {

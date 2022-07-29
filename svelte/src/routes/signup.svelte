@@ -1,64 +1,60 @@
 <script>
 	import Nav from "../components/nav.svelte";
 	import { initializeApp } from "firebase/app";
-	import { getAuth, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
-	import firebaseConfig from "../components/firebaseConfig.json"
+	import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+ 
+	import firebaseConfig from "../components/firebaseConfig.json";
 
 
 	let email = "";
+	let username = "";
 	let password = "";
 
 	const app = initializeApp(firebaseConfig);
-	
-	const createCookie = () => {
-		// authorised for 3 days
-		const exdays = 3;
-		const d = new Date();
-  	d.setTime(d.getTime() + (exdays*24*60*60*1000));
 
-		let expires = "expires="+ d.toUTCString();
-
-		document.cookie = "auth={}"
-	}
-
-	const login = () => {
+	const signUp = () => {
 		const auth = getAuth(app);
-		signInWithEmailAndPassword(auth, email, password)
+		createUserWithEmailAndPassword(auth, email, password)
 			.then((userCredential) => {
 				// Signed in
 				const user = userCredential.user;
-				console.log(user)
 				// ...
 			})
 			.catch((error) => {
 				const errorCode = error.code;
 				const errorMessage = error.message;
+				// ..
 			});
+
+    
+    console.log(auth.currentUser)
 	};
 
-	const change = () => {
-		const auth = getAuth(app);
-		updateProfile(auth.currentUser, {
-      displayName: "jadd"
-    })
-		console.log(auth.currentUser.reloadUserInfo.localId)
-		createCookie()
-	}
+  
 
-	const logout = () => {};
+	const change = () => {};
+
 </script>
 
 <body>
 	<Nav />
 	<input type="email" id="email" placeholder="email" bind:value={email} />
 	<input
+		type="text"
+		id="username"
+		placeholder="username"
+		bind:value={username}
+	/>
+	<input
 		type="password"
 		id="password"
 		placeholder="password"
 		bind:value={password}
 	/>
-	<button on:click={login}>Login</button>
-	<button on:click={change}>change</button>
+	<button on:click={signUp}>Sign Up</button>
+  <button on:click={change}>change</button>
+
+	<a href="/login">Login Instead</a>
 </body>
 
 <!-- <svelte:window on:scroll={b} /> -->
