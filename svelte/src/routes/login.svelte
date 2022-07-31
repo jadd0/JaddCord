@@ -1,8 +1,9 @@
 <script>
 	import Nav from "../components/nav.svelte";
-	import { initializeApp } from "firebase/app";
-	import { getAuth, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+	import { initializeApp } from "@firebase/app";
+	import { getAuth, signInWithEmailAndPassword, updateProfile } from "@firebase/auth";
 	import firebaseConfig from "../components/firebaseConfig.json"
+	
 
 
 	let email = "";
@@ -10,13 +11,16 @@
 
 	const app = initializeApp(firebaseConfig);
 	
-	const createCookie = () => {
+	function createCookie(auth) {
 		// authorised for 3 days
 		const exdays = 3;
 		const d = new Date();
   	d.setTime(d.getTime() + (exdays*24*60*60*1000));
 
-		let expires = "expires="+ d.toUTCString();
+		const expires = "expires="+ d.toUTCString();
+		const uid = auth.currentUser.reloadUserInfo.localId
+		
+
 
 		document.cookie = "auth={}"
 	}
@@ -46,6 +50,12 @@
 	}
 
 	const logout = () => {};
+
+	const print = () => {
+		const auth = getAuth(app);
+		console.log(auth.currentUser.)
+
+	};
 </script>
 
 <body>
@@ -59,6 +69,7 @@
 	/>
 	<button on:click={login}>Login</button>
 	<button on:click={change}>change</button>
+	<button on:click={print}>print</button>
 </body>
 
 <!-- <svelte:window on:scroll={b} /> -->

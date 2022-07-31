@@ -32,3 +32,6 @@ other ideas:
     time spent on, same as reddit
     longer on, avatars
     
+
+
+cookie = login auto
