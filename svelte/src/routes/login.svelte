@@ -53,7 +53,7 @@
 
 	const print = () => {
 		const auth = getAuth(app);
-		console.log(auth.currentUser.)
+		// console.log(auth.currentUser.)
 
 	};
 </script>

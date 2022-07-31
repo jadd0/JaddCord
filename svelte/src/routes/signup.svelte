@@ -46,6 +46,12 @@
 		bind:value={username}
 	/>
 	<input
+		type="text"
+		id="name"
+		placeholder="name"
+		bind:value={name}
+	/>
+	<input
 		type="password"
 		id="password"
 		placeholder="password"

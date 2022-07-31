@@ -1,10 +1,23 @@
-class User {
-	constructor(username, name, password) {
+const express = require('express');
+const router = express.Router();
+
+module.exports = class User {
+	constructor(email, username, name, password, phoneNumber) {
+		this.email = email;
 		this.username = username;
 		this.name = name;
 		this.password = this.passwordInput(password);
+    this.phoneNumber = phoneNumber;
 		this.UUID = this.generateUUID();
+    this.creationDate = this.createDate();
+    this.profilePicture = null;
+    this.friendAmount = null;
+    this.online = false;
 	}
+
+  createDate() {
+    return new Date();
+  }
 
 	changeName(newName) {
 		this.name = newName;
@@ -22,10 +35,14 @@ class User {
 
 	passwordInput(password) {
 		if (this.passwordChecker(password)) {
-			this.password = password;
-		} else {
-			return false;
+			// this.password = password;
+			return password
+		} 
+		else {
+			// return null;
+			return password
 		}
+		// this.password = password
 	}
 
 	generateUUID() {
@@ -54,17 +71,11 @@ class User {
 	}
 }
 
-const car1 = new User("Jadd123", "Jadd", "Jadd282004");
-console.log(car1);
-if (car1.password == undefined) {
-	car1.password = "TTVUQNPwYA&xpPfF3$#vWMf&24";
-}
-// car1.generateUUID();
-// console.log(car1.UUID);
+// const user = new User("Jadd123", "Jadd", "TTVUQNPwYA&xpPfF3$#vWMf&24", "07387388582");
+// // console.log(car1);
+// if (user.password == undefined) {
+// 	user.password = "TTVUQNPwYA&xpPfF3$#vWMf&24";
+// }
 
-console.log(car1);
+// console.log(user);
 
-car1.passwordInput("Jaddd");
-console.log(car1);
-// User.name = "John";
-// console.log(User);
