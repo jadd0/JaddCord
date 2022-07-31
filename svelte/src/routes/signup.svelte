@@ -1,39 +1,44 @@
 <script>
 	import Nav from "../components/nav.svelte";
 	import { initializeApp } from "firebase/app";
-	import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
- 
-	import firebaseConfig from "../components/firebaseConfig.json";
+	import {
+		getAuth,
+		createUserWithEmailAndPassword,
+		updateProfile,
+	} from "firebase/auth";
 
+	import firebaseConfig from "../components/firebaseConfig.json";
 
 	let email = "";
 	let username = "";
+	let name = "";
 	let password = "";
+	let phoneNumber = "";
 
 	const app = initializeApp(firebaseConfig);
 
 	const signUp = () => {
-		const auth = getAuth(app);
-		createUserWithEmailAndPassword(auth, email, password)
-			.then((userCredential) => {
-				// Signed in
-				const user = userCredential.user;
-				// ...
-			})
-			.catch((error) => {
-				const errorCode = error.code;
-				const errorMessage = error.message;
-				// ..
+		const data = {
+			email: email,
+			username: username,
+			name: name,
+			password: password,
+			phoneNumber: phoneNumber,
+		};
+		// console.log(JSON.stringify(data))
+		(async () => {
+			const rawResponse = await fetch("http://localhost:3000/api", {
+				method: "POST",
+				headers: {
+					Accept: "application/json",
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(data),
 			});
-
-    
-    console.log(auth.currentUser)
+		})();
 	};
 
-  
-
 	const change = () => {};
-
 </script>
 
 <body>
@@ -45,20 +50,20 @@
 		placeholder="username"
 		bind:value={username}
 	/>
-	<input
-		type="text"
-		id="name"
-		placeholder="name"
-		bind:value={name}
-	/>
+	<input type="text" id="name" placeholder="name" bind:value={name} />
 	<input
 		type="password"
 		id="password"
 		placeholder="password"
 		bind:value={password}
 	/>
+	<input
+		type="number"
+		id="phoneNumber"
+		placeholder="phoneNumber"
+		bind:value={phoneNumber}
+	/>
 	<button on:click={signUp}>Sign Up</button>
-  <button on:click={change}>change</button>
 
 	<a href="/login">Login Instead</a>
 </body>
