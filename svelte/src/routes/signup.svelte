@@ -25,6 +25,12 @@
 			password: password,
 			phoneNumber: phoneNumber,
 		};
+
+		if (email == "" || username == "" || name == "" || password == "" || phoneNumber == "") {
+			console.log("empty")
+			return
+		}
+
 		// console.log(JSON.stringify(data))
 		(async () => {
 			const rawResponse = await fetch("http://localhost:3000/api", {
