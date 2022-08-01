@@ -1,9 +1,20 @@
 const express = require("express");
-const { listen } = require("svelte/internal");
 const gen = require("./userGenerator.js");
 const cors = require("cors");
 const request = require("request");
+const dotenv = require("dotenv").config();
+const CryptoJS = require("crypto-js");
 const app = express();
+
+const key = process.env.KEY;
+const PORT = 3000;
+
+const ciphertext = CryptoJS.AES.encrypt('sophie', key).toString();
+
+const bytes  = CryptoJS.AES.decrypt(ciphertext, 'ML3eB8h@!LrrKEA9AQnKQb7PMJeJdEb3');
+const originalText = bytes.toString(CryptoJS.enc.Utf8);
+	
+console.log(ciphertext, originalText);
 
 app.use(express.json());
 app.use(gen);
@@ -54,7 +65,7 @@ app.get("/api", (req, res) => {
 });
 
 
-const PORT = 3000;
+
 
 app.listen(PORT, () => {
 	console.log(`Listening on http://localhost:${PORT}`);

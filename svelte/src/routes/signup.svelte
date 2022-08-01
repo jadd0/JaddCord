@@ -17,6 +17,8 @@
 
 	const app = initializeApp(firebaseConfig);
 
+	// TODO encrypt
+
 	const signUp = () => {
 		const data = {
 			email: email,
