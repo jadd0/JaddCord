@@ -1,75 +1,115 @@
 <script>
 	import Nav from "../components/nav.svelte";
 	import { initializeApp } from "@firebase/app";
-	import { getAuth, signInWithEmailAndPassword, updateProfile } from "@firebase/auth";
-	import firebaseConfig from "../components/firebaseConfig.json"
-	
+	import {
+		getAuth,
+		signInWithEmailAndPassword,
+		updateProfile,
+	} from "@firebase/auth";
+	import firebaseConfig from "../components/firebaseConfig.json";
+	import { onMount } from "svelte";
 
+
+	onMount(() => {
+		document
+			.getElementById("login")
+			.addEventListener("click", function (event) {
+				event.preventDefault();
+			});
+	});
 
 	let email = "";
 	let password = "";
 
 	const app = initializeApp(firebaseConfig);
-	
-	function createCookie(auth) {
-		// authorised for 3 days
-		const exdays = 3;
-		const d = new Date();
-  	d.setTime(d.getTime() + (exdays*24*60*60*1000));
 
-		const expires = "expires="+ d.toUTCString();
-		const uid = auth.currentUser.reloadUserInfo.localId
-		
+	const keyAppend = () => {
 
+	}
 
-		document.cookie = "auth={}"
+	const getExpiryDate = () => {
+		const days = 3;
+		const date = new Date();
+		date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000); 
+		return date
 	}
 
 	const login = () => {
-		const auth = getAuth(app);
-		signInWithEmailAndPassword(auth, email, password)
-			.then((userCredential) => {
-				// Signed in
-				const user = userCredential.user;
-				console.log(user)
-				// ...
-			})
-			.catch((error) => {
-				const errorCode = error.code;
-				const errorMessage = error.message;
+		// console.log("logim	")
+		(async () => {
+			const rawResponse = await fetch("http://localhost:3000/login", {
+				method: "POST",
+				headers: {
+					Accept: "application/json",
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					email: email,
+					password: password,
+				}),
 			});
+		
+			if (rawResponse.status == 401) {
+				document.getElementById("incorrect").style.display = "block";
+				return
+			}
+			
+			else if (rawResponse.status == 200) {
+				const promise = rawResponse.json().then((value) => {
+					const key = value.key
+					console.log(key)
+					// document.cookie = `key=${key}; expires=${getExpiryDate()}; SameSite=lax;`
+				});
+			}
+			
+
+
+
+
+			keyAppend(rawResponse.body)
+		})();
 	};
 
 	const change = () => {
 		const auth = getAuth(app);
 		updateProfile(auth.currentUser, {
-      displayName: "jadd"
-    })
-		console.log(auth.currentUser.reloadUserInfo.localId)
-		createCookie()
-	}
-
-	const logout = () => {};
-
-	const print = () => {
-		const auth = getAuth(app);
-		// console.log(auth.currentUser.)
-
+			displayName: "jadd",
+		});
+		console.log(auth.currentUser.reloadUserInfo.localId);
+		createCookie();
 	};
+
+	const auth = () => {
+		
+	}
 </script>
 
 <body>
 	<Nav />
-	<input type="email" id="email" placeholder="email" bind:value={email} />
-	<input
-		type="password"
-		id="password"
-		placeholder="password"
-		bind:value={password}
-	/>
-	<button on:click={login}>Login</button>
-	<button on:click={change}>change</button>
-	<button on:click={print}>print</button>
+	<div id="loginForm">
+		<div class="inputDiv">
+			<input
+				type="email"
+				id="email"
+				placeholder="email"
+				bind:value={email}
+			/>
+		</div>
+		<div class="inputDiv">
+			<input
+				type="password"
+				id="password"
+				placeholder="password"
+				bind:value={password}
+			/>
+		</div>
+		<button on:click={login} id="loginButton">Login</button>
+		<h1 id="incorrect">
+			Your email/password is incorrect. Please try again
+		</h1>
+	</div>
+
+	<button on:click={auth}>auth</button>
 </body>
 
 <!-- <svelte:window on:scroll={b} /> -->
@@ -96,11 +136,43 @@
 		font-weight: 500;
 	}
 
-	#loginBox {
+	h1 {
+		color: black;
+		display: none;
+	}
+
+	#loginForm {
 		margin: 0 auto;
-		margin-top: 25vh;
 		border: 2px solid black;
-		width: 25vw;
-		border-radius: 20px;
+		background: white;
+		width: 400px;
+		height: 400px;
+		border-radius: 15px;
+	}
+
+	input {
+		margin: 0 auto;
+		line-height: 16px;
+	}
+
+	.inputDiv {
+		margin: 0 auto;
+		font-size: 17px;
+		border: 1px solid #dddfe2;
+		width: 364px;
+		height: 50px;
+		display: flex;
+		margin-top: 20px;
+	}
+
+	.inputDiv:nth-child(1) {
+		margin-top: 40px;
+	}
+
+	#loginButton {
+		margin: 0 auto;
+		margin-top: 40px;
+		width: 364px;
+		height: 50px;
 	}
 </style>

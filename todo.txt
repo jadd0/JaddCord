@@ -35,3 +35,4 @@ other ideas:
 
 
 cookie = login auto
+encrypt cookie

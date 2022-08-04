@@ -1,4 +1,5 @@
 const express = require('express');
+const { create_bidirectional_transition } = require('svelte/internal');
 const router = express.Router();
 
 module.exports = class User {
@@ -9,10 +10,27 @@ module.exports = class User {
 		this.password = this.passwordInput(password);
     this.phoneNumber = phoneNumber;
 		this.UUID = this.generateUUID();
+		this.QRCode = this.createQRCode(this.UUID);
     this.creationDate = this.createDate();
     this.profilePicture = null;
     this.friendAmount = null;
     this.online = false;
+		this.authKey = null;
+	}
+
+	keyGenerator() {
+		const opt = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!£$%^*@<,>.?/|#~'
+		let key = ''
+
+		for(let i = 0; i < 40; i++){
+			key += opt[Math.floor(Math.random() * 78)]
+		}
+
+		this.authKey = key
+	}
+
+	createQRCode(UUID) {
+		
 	}
 
   createDate() {
