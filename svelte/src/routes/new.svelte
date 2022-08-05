@@ -1,13 +1,16 @@
 <script>
-  const one = "jadd@jadd.com"
-  const two = "john123"
-
-
+  const user = {
+			email: "email",
+			username: "username",
+			name: "name",
+			password: "password",
+			phoneNumber: "phoneNumber",
+	};
   const sub = async () => {
-    console.log(JSON.stringify({one, two}))
-    const da = await fetch("/api", {
+    // console.log(JSON.stringify({one, two}))
+    const da = await fetch("/api/signup", {
       method: "post",
-      body: JSON.stringify({one, two})
+      body: JSON.stringify(user)
     })
     
     const data = await da.json()

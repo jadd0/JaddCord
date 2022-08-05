@@ -37,7 +37,7 @@
 	const login = () => {
 		// console.log("logim	")
 		(async () => {
-			const rawResponse = await fetch("http://localhost:3000/login", {
+			const rawResponse = await fetch("/api/login", {
 				method: "POST",
 				headers: {
 					Accept: "application/json",
