@@ -1,13 +1,5 @@
 <script>
 	import Nav from "../components/nav.svelte";
-	import { initializeApp } from "firebase/app";
-	import {
-		getAuth,
-		createUserWithEmailAndPassword,
-		updateProfile,
-	} from "firebase/auth";
-
-	import firebaseConfig from "../components/firebaseConfig.json";
 
 	let email = "";
 	let username = "";
@@ -15,7 +7,6 @@
 	let password = "";
 	let phoneNumber = "";
 
-	const app = initializeApp(firebaseConfig);
 
 	// TODO encrypt
 
@@ -35,7 +26,7 @@
 
 		// console.log(JSON.stringify(data))
 		(async () => {
-			const rawResponse = await fetch("http://localhost:3000/api", {
+			const rawResponse = await fetch("/api/signup", {
 				method: "POST",
 				headers: {
 					Accept: "application/json",

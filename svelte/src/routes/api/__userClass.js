@@ -11,18 +11,31 @@ export class User {
     this.profilePicture = null;
     this.friendAmount = null;
     this.online = false;
-		this.authKey = null;
+		this.authKey = this.keyGenerator();
 	}
 
 	keyGenerator() {
-		const opt = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!£$%^*@<,>.?/|#~'
+		// this is a key for user authentication. The user will never know this key and is extremely sensitive
+		// no data will ever be returned without this key
+
+		const alphNumString = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!£$%^*@<,>.?/|#~'
+
 		let key = ''
 
 		for(let i = 0; i < 40; i++){
-			key += opt[Math.floor(Math.random() * 78)]
+			key += alphNumString[Math.floor(Math.random() * 78)]
 		}
 
-		this.authKey = key
+		return key
+	}
+
+	generateJWT() {
+	// TODO encrypt this locally
+		return {
+			username: this.username,
+			password: this.password,
+			authKey: this.authKey
+		}
 	}
 
 	createQRCode(UUID) {
@@ -57,6 +70,18 @@ export class User {
 			return password
 		}
 		// this.password = password
+	}
+
+	generateCookie() {
+		const jwt = this.generateJWT();
+
+		const days = 3;
+		const date = new Date();
+		date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000); 
+		
+		const cookie = `jwt=${JSON.stringify(jwt)}; expires=${date.toUTCString()}; SameSite=lax`;
+
+		return cookie
 	}
 
 	generateUUID() {
