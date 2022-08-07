@@ -1,12 +1,15 @@
-import { User } from "./__userClass.js";
+import { User } from "./userClass.js";
+import { list } from '../../store.js';
 
-const list = [];
+let userList = [];
+
+list.subscribe(value => {
+	userList = value
+});
 
 /** @type {import('./__types/[id]').RequestHandler} */
 export async function post({ request }) {
 	const req = await request.json();
-
-  console.log(req)
 
 	const user = new User(
 		req.email,
@@ -15,10 +18,10 @@ export async function post({ request }) {
 		req.password,
 		req.phoneNumber
 	);
-
-	const username = list.find((user) => user.username === req.username);
-	const email = list.find((user) => user.email === req.email);
-	const phoneNumber = list.find(
+	console.log(userList)
+	const username = userList.find((user) => user.username === req.username);
+	const email = userList.find((user) => user.email === req.email);
+	const phoneNumber = userList.find(
 		(user) => user.phoneNumber === req.phoneNumber
 	);
 
@@ -39,56 +42,13 @@ export async function post({ request }) {
 		}
 	}
 
-	list.push(user);
-	console.log(list);
+	// count.update(n => n + 1);
+	userList.push(user)
+	list = [...userList]
 
 	return {
+		headers: {'set-cookie': JSON.stringify(user.generateCookie())},
 		status: 200,
 		body: { status: `user ${user.username} added to the database`}
 	}
-}
-
-
-function loginSys(email, password) {
-  const user = list.find((user) => user.email === email);
-  
-  if (user !== undefined) {
-    if (user.password === password) {
-      console.log(email + " logged in successfully");
-  
-      user.keyGenerator();
-      
-      // if the username and password are correct
-      return user
-    } 
-    // if the password is incorrect, but email is correct
-    return false
-  } 
-  // if there is no user associated with the email
-  return false
-}
-
-export async function put({ request }) {
-	
-	const req = await request.json();
-
-	const email = req.email;
-	const password = req.password;
-
-	const user = loginSys(email, password)
-
-	if (user != false) {
-		const jwt = user.generateJWT();
-
-		return {
-			headers: {'set-cookie': [user.generateCookie()]},
-			status: 200,
-			body: jwt,
-		};
-	}
-
-	return {
-		status: 401,
-		body: { error: "wrong password" }
-	};
 }

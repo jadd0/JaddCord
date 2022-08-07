@@ -1,24 +1,24 @@
-// import jwt from "../api/jwt";
+/** @type {import('./__types/[id]').RequestHandler} */
+import { list } from '../../store.js';
 
-import { list } from "./signup"
+let userList = [];
 
-console.log(list)
+list.subscribe(value => {
+	userList = value
+});
 
-function loginSys(email, password) {
-	// const list = await getList()
 
-	console.log(list)
-
-  const user = list.find((user) => user.email === email);
+export function loginSys(email, password) {
+  const user = userList.find((user) => user.email === email);
   
   if (user !== undefined) {
     if (user.password === password) {
       console.log(email + " logged in successfully");
   
-      user.keyGenerator();
+      // user.keyGenerator();
       
       // if the username and password are correct
-      return true
+      return user
     } 
     // if the password is incorrect, but email is correct
     return false
@@ -27,21 +27,22 @@ function loginSys(email, password) {
   return false
 }
 
-
-
-	/** @type {import('./__types/[id]').RequestHandler} */
 export async function post({ request }) {
+	
 	const req = await request.json();
 
 	const email = req.email;
 	const password = req.password;
 
-	if (loginSys(email, password)) {
+	const user = loginSys(email, password)
+
+	if (user != false) {
 		const jwt = user.generateJWT();
 
 		return {
+			headers: {'set-cookie': `jwt=${JSON.stringify(user.generateJWT())}; path=/; Expires=${user.generateExpiry(3)}`},
 			status: 200,
-			body: jwt,
+			// body: jwt,
 		};
 	}
 

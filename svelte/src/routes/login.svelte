@@ -37,8 +37,8 @@
 	const login = () => {
 		// console.log("logim	")
 		(async () => {
-			const rawResponse = await fetch("/api/signup", {
-				method: "put",
+			const rawResponse = await fetch("/api/login", {
+				method: "post",
 				headers: {
 					Accept: "application/json",
 					"Content-Type": "application/json",
