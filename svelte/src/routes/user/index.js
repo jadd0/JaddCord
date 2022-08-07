@@ -1,4 +1,7 @@
 import { list } from "../../store.js";
+import { Auth } from '../api/userAuth.js'
+
+const auth = new Auth();
 
 let userList = [];
 
@@ -7,33 +10,28 @@ list.subscribe((value) => {
 });
 
 export async function get({ request }) {
-  console.log("hello")
+  const jwt = auth.checkJWT(request.headers.get("cookie"))
 
-  // const req = await request.json();
+  if (!jwt) {
+    return {
+      status: 401,
+      body: "Unauthorised"
+    }
+  }
 
-  console.log(request.headers.get("cookie"))
+  const user = userList.find((user) => user.email === jwt.email);
 
-  // if(!req.authenticated) {
-  //   return {
-  //     status: 401,
-  //     body: "Unauthorised"
-  //   }
-  // }
-  // const user = userList.find((user) => user.email === context.email);
+  if (user == undefined) {
+    return { 
+      status: 404, 
+      body: "No user found"
+    }
+  }
 
-  // if (user == undefined) {
-  //   return { 
-  //     status: 404, 
-  //     body: "No user found"
-  //   }
-  // }
+  delete user.password, user.authKey
 
-  // delete user.password
-  // delete user.authKey
-
-  // return {
-  //   status: 200,
-  //   body: user
-  // }
-  
+  return {
+    status: 200,
+    body: user
+  }
 }

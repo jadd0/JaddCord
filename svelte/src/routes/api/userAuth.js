@@ -1,12 +1,12 @@
-class auth {
-	constructor() {
-		this.user = user;
-	}
+export class Auth {
+  constructor(User) {
+    this.User = User;
+  }
 
-	checkJWT(cookieList) {
-		const jwt = "";
+	checkJWT(cookieList, userList) {
+		let jwt = "";
 		try {
-			cookieList = cookie.split("; ");
+			cookieList = cookieList.split("; ");
 			const result = {};
 
 			for (let i in cookieList) {
@@ -19,19 +19,19 @@ class auth {
 			return false;
 		}
 
-		if (user.jwt != jwt) return false;
+    const user = this.login(jwt.email, jwt.password,userList)
+    
+		if (user.authKey != jwt.authKey) return false;
 
 		return jwt;
 	}
 
-	login(email, password) {
+	login(email, password, userList) {
 		const user = userList.find((user) => user.email === email);
 
 		if (user !== undefined) {
 			if (user.password === password) {
 				console.log(email + " logged in successfully");
-
-				// user.keyGenerator();
 
 				// if the username and password are correct
 				return user;
@@ -43,7 +43,28 @@ class auth {
 		return false;
 	}
 
-	createUser() {
-    
-  }
+	createUser({ req }, userList) {
+		const user = new this.User(
+			req.email,
+			req.username,
+			req.name,
+			req.password,
+			req.phoneNumber
+		);
+		console.log(userList);
+		const username = userList.find(
+			(user) => user.username === req.username
+		);
+		const email = userList.find((user) => user.email === req.email);
+		const phoneNumber = userList.find(
+			(user) => user.phoneNumber === req.phoneNumber
+		);
+
+		return {
+			user: user,
+			username: username,
+			email: email,
+			phoneNumber: phoneNumber,
+		};
+	}
 }

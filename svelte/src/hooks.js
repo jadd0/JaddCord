@@ -1,5 +1,9 @@
 import { list } from "./store.js";
 import { loginSys } from "./routes/api/login.js";
+import { Auth } from "./routes/api/userAuth.js";
+import { User } from "./routes/api/userClass.js";
+
+const auth = new Auth(User);
 
 let userList = [];
 
@@ -10,27 +14,18 @@ list.subscribe((value) => {
 export const getSession = (event) => {
 	const cookie = event.request.headers.get("cookie");
 
-	const jwt = user.checkJWT(cookie);
+	const jwt = auth.checkJWT(cookie, userList);
 
-  if (!jwt) {
-    return {
-      authenticated: false
-    }
-  }
+	console.log(jwt);
 
-	const user = loginSys(jwt.email, jwt.password);
-
-	if (user != false) {
-		if (user.authKey == jwt.authKey) {
-			console.log("logged in");
-			return {
-				authenticated: true,
-				name: user.name,
-			};
-		}
+	if (!jwt) {
+		return {
+			authenticated: false,
+		};
 	}
-	console.log("unauthenticated");
+
 	return {
-		authenticated: false,
+		authenticated: true,
+		name: jwt.name,
 	};
 };

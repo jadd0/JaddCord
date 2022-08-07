@@ -1,7 +1,12 @@
 import { User } from "./userClass.js";
 import { list } from '../../store.js';
+import { Auth } from './userAuth.js'
+
+const auth = new Auth(User);
 
 let userList = [];
+
+
 
 list.subscribe(value => {
 	userList = value
@@ -11,44 +16,31 @@ list.subscribe(value => {
 export async function post({ request }) {
 	const req = await request.json();
 
-	const user = new User(
-		req.email,
-		req.username,
-		req.name,
-		req.password,
-		req.phoneNumber
-	);
-	console.log(userList)
-	const username = userList.find((user) => user.username === req.username);
-	const email = userList.find((user) => user.email === req.email);
-	const phoneNumber = userList.find(
-		(user) => user.phoneNumber === req.phoneNumber
-	);
+	const returnedVal = auth.createUser({ req }, userList);
 
-	if (username !== undefined) {
+	if (returnedVal.username !== undefined) {
 		return {
 			status: 406,
 			body: { error: "username taken" }
 		}
-	} else if (email !== undefined) {
+	} else if (returnedVal.email !== undefined) {
 		return {
 			status: 406,
 			body: { error: "email taken" }
 		}
-	} else if (phoneNumber !== undefined) {
+	} else if (returnedVal.phoneNumber !== undefined) {
 		return {
 			status: 406,
 			body: { error: "phone number taken" }
 		}
 	}
 
-	// count.update(n => n + 1);
-	userList.push(user)
+	userList.push(returnedVal.user)
 	list = [...userList]
 
 	return {
-		headers: {'set-cookie': JSON.stringify(user.generateCookie())},
+		headers: {'set-cookie': JSON.stringify(returnedVal.user.generateCookie())},
 		status: 200,
-		body: { status: `user ${user.username} added to the database`}
+		body: { status: `user ${returnedVal.user.username} added to the database`}
 	}
 }

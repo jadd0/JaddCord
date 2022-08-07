@@ -1,7 +1,9 @@
 /** @type {import('./__types/[id]').RequestHandler} */
 import { list } from '../../store.js';
-import { auth } from './userAuth.js'
+import { User } from './userClass.js'
+import { Auth } from './userAuth.js';
 
+const auth = new Auth(User);
 
 let userList = [];
 
@@ -15,15 +17,15 @@ export async function post({ request }) {
 	const email = req.email;
 	const password = req.password;
 
-	const user = auth.login(email, password)
+	const user = auth.login(email, password, userList)
 
 	if (user != false) {
 		const jwt = user.generateJWT();
 
 		return {
-			headers: {'set-cookie': `jwt=${JSON.stringify(user.generateJWT())}; path=/; Expires=${user.generateExpiry(3)}`},
+			headers: {'set-cookie': `jwt=${JSON.stringify(jwt)}; path=/; Expires=${user.generateExpiry(3)}`},
 			status: 200,
-			// body: jwt,
+			body: "success",
 		};
 	}
 
