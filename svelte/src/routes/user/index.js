@@ -1,4 +1,4 @@
-import { list } from "./store.js";
+import { list } from "../../store.js";
 
 let userList = [];
 
@@ -6,29 +6,34 @@ list.subscribe((value) => {
 	userList = value;
 });
 
-export async function get({ context }) {
+export async function get({ request }) {
   console.log("hello")
-  if(!context.authenticated) {
-    return {
-      status: 401,
-      body: "Unauthorised"
-    }
-  }
-  const user = userList.find((user) => user.email === context.email);
 
-  if (user == undefined) {
-    return { 
-      status: 404, 
-      body: "No user found"
-    }
-  }
+  // const req = await request.json();
 
-  delete user.password
-  delete user.authKey
+  console.log(request.headers.get("cookie"))
 
-  return {
-    status: 200,
-    body: user
-  }
+  // if(!req.authenticated) {
+  //   return {
+  //     status: 401,
+  //     body: "Unauthorised"
+  //   }
+  // }
+  // const user = userList.find((user) => user.email === context.email);
+
+  // if (user == undefined) {
+  //   return { 
+  //     status: 404, 
+  //     body: "No user found"
+  //   }
+  // }
+
+  // delete user.password
+  // delete user.authKey
+
+  // return {
+  //   status: 200,
+  //   body: user
+  // }
   
 }

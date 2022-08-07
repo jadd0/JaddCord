@@ -22,7 +22,9 @@
 	console.log("hello")
 	
 	onMount(async () => {
+		console.log("hello1")
 		const res = await fetch('http://localhost:5173/user')
+		console.log(res)
 		const user = await res.json()
 		name = user.name;
 	})

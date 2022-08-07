@@ -7,28 +7,10 @@ list.subscribe((value) => {
 	userList = value;
 });
 
-function parseCookie(cookie) {
-	try {
-		cookie = cookie.split("; ");
-		const result = {};
-
-		for (let i in cookie) {
-			const cur = cookie[i].split("=");
-			result[cur[0]] = cur[1];
-		}
-
-    return JSON.parse(result.jwt);
-	} 
-  catch {
-    return false
-  }
-	
-}
-
 export const getSession = (event) => {
 	const cookie = event.request.headers.get("cookie");
 
-	const jwt = parseCookie(cookie);
+	const jwt = user.checkJWT(cookie);
 
   if (!jwt) {
     return {

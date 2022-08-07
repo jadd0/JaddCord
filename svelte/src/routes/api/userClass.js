@@ -4,47 +4,55 @@ export class User {
 		this.username = username;
 		this.name = name;
 		this.password = this.passwordInput(password);
-    this.phoneNumber = phoneNumber;
+		this.phoneNumber = phoneNumber;
 		this.UUID = this.generateUUID();
 		this.QRCode = this.createQRCode(this.UUID);
-    this.creationDate = this.createDate();
-    this.profilePicture = null;
-    this.friendAmount = null;
-    this.online = false;
+		this.creationDate = this.createDate();
+		this.profilePicture = null;
+		this.friendAmount = null;
+		this.online = false;
 		this.authKey = this.keyGenerator();
 	}
+
+	login() {
+
+  }
+
+  logout() {
+
+  }
 
 	keyGenerator() {
 		// this is a key for user authentication. The user will never know this key and is extremely sensitive
 		// no data will ever be returned without this key
 
-		const alphNumString = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
+		const alphNumString =
+			"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
 
-		let key = ''
+		let key = "";
 
-		for(let i = 0; i < 40; i++){
-			key += alphNumString[Math.floor(Math.random() * alphNumString.length)]
+		for (let i = 0; i < 40; i++) {
+			key +=
+				alphNumString[Math.floor(Math.random() * alphNumString.length)];
 		}
 
-		return key
+		return key;
 	}
 
 	generateJWT() {
-	// TODO encrypt this locally
+		// TODO encrypt this locally
 		return {
 			email: this.email,
 			password: this.password,
-			authKey: this.authKey
-		}
+			authKey: this.authKey,
+		};
 	}
 
-	createQRCode(UUID) {
-		
-	}
+	createQRCode(UUID) {}
 
-  createDate() {
-    return new Date();
-  }
+	createDate() {
+		return new Date();
+	}
 
 	changeName(newName) {
 		this.name = newName;
@@ -63,11 +71,10 @@ export class User {
 	passwordInput(password) {
 		if (this.passwordChecker(password)) {
 			// this.password = password;
-			return password
-		} 
-		else {
+			return password;
+		} else {
 			// return null;
-			return password
+			return password;
 		}
 		// this.password = password
 	}
@@ -76,15 +83,17 @@ export class User {
 		const date = new Date();
 		date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
 
-		return date
+		return date;
 	}
 
 	generateCookie(days) {
 		const jwt = this.generateJWT();
 
-		const cookie = `jwt=${JSON.stringify(this.generateJWT())}; path=/; Expires=${this.generateExpiry(days)}`;
+		const cookie = `jwt=${JSON.stringify(
+			this.generateJWT()
+		)}; path=/; Expires=${this.generateExpiry(days)}`;
 
-		return cookie
+		return cookie;
 	}
 
 	generateUUID() {
