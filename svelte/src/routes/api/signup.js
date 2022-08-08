@@ -1,6 +1,6 @@
-import { User } from "./userClass.js";
 import { list } from '../../store.js';
-import { Auth } from './userAuth.js'
+import { User } from '../../classes/userClass.js'
+import { Auth } from '../../classes/userAuth.js';
 
 const auth = new Auth(User);
 

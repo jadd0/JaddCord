@@ -3,7 +3,7 @@ export class User {
 		this.email = email;
 		this.username = username;
 		this.name = name;
-		this.password = this.passwordInput(password);
+		this.password = password;
 		this.phoneNumber = phoneNumber;
 		this.UUID = this.generateUUID();
 		this.QRCode = this.createQRCode(this.UUID);
@@ -14,13 +14,9 @@ export class User {
 		this.authKey = this.keyGenerator();
 	}
 
-	login() {
+	login() {}
 
-  }
-
-  logout() {
-
-  }
+	logout() {}
 
 	keyGenerator() {
 		// this is a key for user authentication. The user will never know this key and is extremely sensitive

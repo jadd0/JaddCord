@@ -1,7 +1,7 @@
 /** @type {import('./__types/[id]').RequestHandler} */
 import { list } from '../../store.js';
-import { User } from './userClass.js'
-import { Auth } from './userAuth.js';
+import { User } from '../../classes/userClass.js'
+import { Auth } from '../../classes/userAuth.js';
 
 const auth = new Auth(User);
 
@@ -18,6 +18,7 @@ export async function post({ request }) {
 	const password = req.password;
 
 	const user = auth.login(email, password, userList)
+
 
 	if (user != false) {
 		const jwt = user.generateJWT();

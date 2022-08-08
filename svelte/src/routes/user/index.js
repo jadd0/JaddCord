@@ -1,5 +1,8 @@
 import { list } from "../../store.js";
-import { Auth } from '../api/userAuth.js'
+import { User } from '../../classes/userClass.js'
+import { Auth } from '../../classes/userAuth.js';
+
+
 
 const auth = new Auth();
 
@@ -10,7 +13,7 @@ list.subscribe((value) => {
 });
 
 export async function get({ request }) {
-  const jwt = auth.checkJWT(request.headers.get("cookie"))
+  const jwt = auth.checkJWT(request.headers.get("cookie"), userList)
 
   if (!jwt) {
     return {
@@ -28,7 +31,9 @@ export async function get({ request }) {
     }
   }
 
-  delete user.password, user.authKey
+  const newUser = {...user}
+
+  delete newUser.password, newUser.authKey
 
   return {
     status: 200,

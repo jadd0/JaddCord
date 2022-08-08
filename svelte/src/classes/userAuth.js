@@ -1,7 +1,7 @@
 export class Auth {
-  constructor(User) {
-    this.User = User;
-  }
+	constructor(User) {
+		this.User = User;
+	}
 
 	checkJWT(cookieList, userList) {
 		let jwt = "";
@@ -19,15 +19,16 @@ export class Auth {
 			return false;
 		}
 
-    const user = this.login(jwt.email, jwt.password,userList)
-    
+		const user = this.login(jwt.email, jwt.password, userList);
+
 		if (user.authKey != jwt.authKey) return false;
 
-		return jwt;
+		return user;
 	}
 
 	login(email, password, userList) {
 		const user = userList.find((user) => user.email === email);
+
 
 		if (user !== undefined) {
 			if (user.password === password) {
@@ -51,7 +52,7 @@ export class Auth {
 			req.password,
 			req.phoneNumber
 		);
-		console.log(userList);
+    
 		const username = userList.find(
 			(user) => user.username === req.username
 		);
