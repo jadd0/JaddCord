@@ -1,11 +1,11 @@
 users:
-    create user DB
-    create user OOP system
-    add id and username to each user
+    create user DB XXX
+    create user OOP system XXX
+    add id and username to each user XXX
 
 design:
     opening page
-    login page
+    login page XXX
     friends page
     messaging page
     profile page
@@ -34,5 +34,5 @@ other ideas:
     
 
 
-cookie = login auto
+cookie = login auto XXX
 encrypt cookie
