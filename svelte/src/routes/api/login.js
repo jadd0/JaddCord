@@ -24,7 +24,10 @@ export async function post({ request }) {
 		const jwt = user.generateJWT();
 
 		return {
-			headers: {'set-cookie': `jwt=${JSON.stringify(jwt)}; path=/; Expires=${user.generateExpiry(3)}`},
+			headers: {
+				'set-cookie': `jwt=${JSON.stringify(jwt)}; path=/; Expires=${user.generateExpiry(3)}`,
+				Location : '/protected'
+		},
 			status: 200,
 			body: "success",
 		};

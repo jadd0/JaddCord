@@ -48,18 +48,15 @@
 					password: password,
 				}),
 			});
-		
+
+			
 			if (rawResponse.status == 401) {
 				document.getElementById("incorrect").style.display = "block";
 				return
 			}
 			
 			else if (rawResponse.status == 200) {
-				const promise = rawResponse.json().then((value) => {
-					const key = value.key
-					console.log(key)
-					// document.cookie = `key=${key}; expires=${getExpiryDate()}; SameSite=lax;`
-				});
+					window.location.href = '/protected'
 			}
 			
 
