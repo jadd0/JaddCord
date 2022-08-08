@@ -34,7 +34,14 @@
 				},
 				body: JSON.stringify(data),
 			});
+
+
+			if (rawResponse.status == 200) {
+			window.location.href = '/protected'
+		}
 		})();
+
+		
 	};
 
 	const change = () => {};
