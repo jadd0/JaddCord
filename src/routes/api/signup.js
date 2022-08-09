@@ -37,9 +37,11 @@ export async function post({ request }) {
 
 	userList.push(returnedVal.user)
 	list = [...userList]
+
+	console.log(returnedVal.user)
 	
 	return {
-		headers: {'set-cookie': `jwt=${JSON.stringify(returnedVal.user.generateJWT())}; path=/; Expires=${returnedVal.user.generateExpiry(3)}`},
+		headers: {'set-cookie': auth.generateCookie(returnedVal.user, 3)},
 		status: 200,
 		body: { status: `user ${returnedVal.user.username} added to the database`}
 	}

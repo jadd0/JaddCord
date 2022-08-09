@@ -68,4 +68,19 @@ export class Auth {
 			phoneNumber: phoneNumber,
 		};
 	}
+
+	generateExpiry(days) {
+		const date = new Date();
+		date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+
+		return date;
+	}
+
+	generateCookie(user, days) {
+		const jwt = user.generateJWT();
+
+		const cookie = `jwt=${JSON.stringify(jwt)}; path=/; Expires=${this.generateExpiry(3)}`;
+
+		return cookie;
+	}
 }

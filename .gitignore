@@ -1,7 +1,9 @@
-node_modules/
+.DS_Store
+node_modules
+/build
+/.svelte-kit
+/package
 .env
-serviceAccountKey.json
-svelte/node_modules
-svelte/.gitignore
-svelte/package.json
-svelte/package-lock.json
+.env.*
+!.env.example
+/src/components/firebaseConfig.json

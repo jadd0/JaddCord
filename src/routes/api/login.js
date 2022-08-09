@@ -25,7 +25,7 @@ export async function post({ request }) {
 
 		return {
 			headers: {
-				'set-cookie': `jwt=${JSON.stringify(jwt)}; path=/; Expires=${user.generateExpiry(3)}`,
+				'set-cookie': auth.generateCookie(user, 3),
 				Location : '/protected'
 		},
 			status: 200,

@@ -21,7 +21,7 @@ export async function get({ request }) {
       body: "Unauthorised"
     }
   }
-
+  
   const user = userList.find((user) => user.email === jwt.email);
 
   if (user == undefined) {

@@ -1,19 +1,25 @@
 export class User {
-	constructor(email, username, name, password, phoneNumber) {
+	// dont have to use all, just there for DB methods
+	constructor(email, username, name, password, phoneNumber, UUID, QRCode, creationDate, profilePicture, friendAmount, online, authKey, friendList) {
 		this.email = email;
 		this.username = username;
 		this.name = name;
 		this.password = password;
 		this.phoneNumber = phoneNumber;
-		this.UUID = this.generateUUID();
-		this.QRCode = this.createQRCode(this.UUID);
-		this.creationDate = this.createDate();
-		this.profilePicture = null;
-		this.friendAmount = null;
-		this.online = false;
-		this.authKey = this.keyGenerator();
+		this.UUID = UUID || this.generateUUID();
+		this.QRCode = QRCode || this.createQRCode(this.UUID);
+		this.creationDate = creationDate || this.createDate();
+		this.profilePicture = profilePicture || null;
+		this.friendAmount = friendAmount || null;
+		this.online = online || false;
+		this.authKey = authKey || this.keyGenerator();
+		this.friendList = friendList || new friendList();
 	}
 
+	addFriend(list, username) {
+		const user = list.find((user) => user.username === username);
+	}
+	
 	login() {}
 
 	logout() {}
@@ -73,23 +79,6 @@ export class User {
 			return password;
 		}
 		// this.password = password
-	}
-
-	generateExpiry(days) {
-		const date = new Date();
-		date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-
-		return date;
-	}
-
-	generateCookie(days) {
-		const jwt = this.generateJWT();
-
-		const cookie = `jwt=${JSON.stringify(
-			this.generateJWT()
-		)}; path=/; Expires=${this.generateExpiry(days)}`;
-
-		return cookie;
 	}
 
 	generateUUID() {

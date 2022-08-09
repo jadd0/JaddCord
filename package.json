@@ -1,41 +1,27 @@
 {
-  "name": "jaddcord",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npm nodemon "
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jadd0/JaddCord.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/jadd0/JaddCord/issues"
-  },
-  "homepage": "https://github.com/jadd0/JaddCord#readme",
-  "dependencies": {
-    "body-parser": "^1.20.0",
-    "cookie-parser": "^1.4.6",
-    "cors": "^2.8.5",
-    "crypto-js": "^4.1.1",
-    "csurf": "^1.11.0",
-    "dotenv": "^16.0.1",
-    "ejs": "^3.1.8",
-    "express": "^4.18.1",
-    "firebase-admin": "^11.0.0",
-    "http": "^0.0.1-security",
-    "jose": "^4.8.3",
-    "path": "^0.12.7",
-    "request": "^2.88.2",
-    "socket.io": "^4.5.1",
-    "svelte": "^3.49.0",
-    "svelte-view-engine": "^1.2.0-b"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.19"
-  }
+	"name": "my-app",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"package": "svelte-kit package",
+		"preview": "vite preview",
+		"prepare": "svelte-kit sync",
+		"new": "node aj.js"
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "next",
+		"@sveltejs/adapter-node": "^1.0.0-next.83",
+		"@sveltejs/adapter-static": "^1.0.0-next.38",
+		"@sveltejs/kit": "next",
+		"svelte": "^3.44.0",
+		"vite": "^3.0.0"
+	},
+	"type": "module",
+	"dependencies": {
+		"crypto-js": "^4.1.1",
+		"firebase": "^9.9.1",
+		"firebase-scrypt": "^2.2.0",
+		"querystring": "^0.2.1"
+	}
 }
