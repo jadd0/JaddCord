@@ -35,7 +35,7 @@ export async function post({ request }) {
 	}
 
 	userList.push(returnedVal.user)
-	list = [...userList]
+	list.set([...userList])
 
 	console.log(returnedVal.user)
 	
