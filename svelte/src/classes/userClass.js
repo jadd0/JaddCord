@@ -13,7 +13,7 @@ export class User {
 		this.friendAmount = friendAmount || null;
 		this.online = online || false;
 		this.authKey = authKey || this.keyGenerator();
-		this.friendList = friendList || new friendList();
+		// this.friendList = friendList || new friendList();
 	}
 
 	addFriend(list, username) {

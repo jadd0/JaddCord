@@ -53,13 +53,9 @@ export class Auth {
 			req.phoneNumber
 		);
     
-		const username = userList.find(
-			(user) => user.username === req.username
-		);
+		const username = userList.find((user) => user.username === req.username);
 		const email = userList.find((user) => user.email === req.email);
-		const phoneNumber = userList.find(
-			(user) => user.phoneNumber === req.phoneNumber
-		);
+		const phoneNumber = userList.find((user) => user.phoneNumber === req.phoneNumber);
 
 		return {
 			user: user,

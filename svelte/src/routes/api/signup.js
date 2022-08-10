@@ -6,11 +6,10 @@ const auth = new Auth(User);
 
 let userList = [];
 
-
-
 list.subscribe(value => {
 	userList = value
 });
+
 
 /** @type {import('./__types/[id]').RequestHandler} */
 export async function post({ request }) {
