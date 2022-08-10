@@ -13,9 +13,7 @@
 
 	let email = "";
 	let password = "";
-
-	const app = initializeApp(firebaseConfig);
-
+	
 	const keyAppend = () => {
 
 	}
