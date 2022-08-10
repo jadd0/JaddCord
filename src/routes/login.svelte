@@ -1,5 +1,12 @@
 <script>
 	import Nav from "../components/nav.svelte";
+	import { initializeApp } from "@firebase/app";
+	import {
+		getAuth,
+		signInWithEmailAndPassword,
+		updateProfile,
+	} from "@firebase/auth";
+	import firebaseConfig from "../components/firebaseConfig.json";
 	import { onMount } from "svelte";
 
 
