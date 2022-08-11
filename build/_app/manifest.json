@@ -1,0 +1,157 @@
+{
+  "src/routes/rubik-latin-italic.woff2": {
+    "file": "immutable/assets/rubik-latin-italic-c10bd9c7.woff2",
+    "src": "src/routes/rubik-latin-italic.woff2"
+  },
+  "src/routes/Fontspring-DEMO-lufga-regular.woff": {
+    "file": "immutable/assets/Fontspring-DEMO-lufga-regular-bd791144.woff",
+    "src": "src/routes/Fontspring-DEMO-lufga-regular.woff"
+  },
+  "src/routes/rubik-latin-400.woff2": {
+    "file": "immutable/assets/rubik-latin-400-34c98f54.woff2",
+    "src": "src/routes/rubik-latin-400.woff2"
+  },
+  ".svelte-kit/runtime/client/start.js": {
+    "file": "immutable/start-59dce9df.js",
+    "src": ".svelte-kit/runtime/client/start.js",
+    "isEntry": true,
+    "imports": [
+      "_index-f7f4432a.js"
+    ],
+    "dynamicImports": [
+      ".svelte-kit/runtime/components/layout.svelte",
+      ".svelte-kit/runtime/components/error.svelte",
+      "src/routes/about.svelte",
+      "src/routes/index.svelte",
+      "src/routes/login.svelte",
+      "src/routes/new.svelte",
+      "src/routes/protected.svelte",
+      "src/routes/signup.svelte"
+    ]
+  },
+  ".svelte-kit/runtime/components/layout.svelte": {
+    "file": "immutable/layout.svelte-392b753b.js",
+    "src": ".svelte-kit/runtime/components/layout.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-f7f4432a.js"
+    ]
+  },
+  ".svelte-kit/runtime/components/error.svelte": {
+    "file": "immutable/error.svelte-c2861665.js",
+    "src": ".svelte-kit/runtime/components/error.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-f7f4432a.js"
+    ]
+  },
+  "src/routes/about.svelte": {
+    "file": "immutable/pages/about.svelte-b88e2e81.js",
+    "src": "src/routes/about.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-f7f4432a.js",
+      "_nav-f0ccacfe.js"
+    ],
+    "css": [
+      "immutable/assets/about-9f4d8bc5.css"
+    ]
+  },
+  "src/routes/index.svelte": {
+    "file": "immutable/pages/index.svelte-448d9aa7.js",
+    "src": "src/routes/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-f7f4432a.js",
+      "_nav-f0ccacfe.js"
+    ],
+    "css": [
+      "immutable/assets/index-9b1ce869.css"
+    ],
+    "assets": [
+      "immutable/assets/Fontspring-DEMO-lufga-regular-bd791144.woff",
+      "immutable/assets/rubik-latin-italic-c10bd9c7.woff2",
+      "immutable/assets/rubik-latin-400-34c98f54.woff2"
+    ]
+  },
+  "src/routes/login.svelte": {
+    "file": "immutable/pages/login.svelte-2f6dbe35.js",
+    "src": "src/routes/login.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-f7f4432a.js",
+      "_nav-f0ccacfe.js"
+    ],
+    "css": [
+      "immutable/assets/login-e04cb3bb.css"
+    ]
+  },
+  "src/routes/new.svelte": {
+    "file": "immutable/pages/new.svelte-f71f4a7e.js",
+    "src": "src/routes/new.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-f7f4432a.js"
+    ]
+  },
+  "src/routes/protected.svelte": {
+    "file": "immutable/pages/protected.svelte-454d0173.js",
+    "src": "src/routes/protected.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-f7f4432a.js"
+    ]
+  },
+  "src/routes/signup.svelte": {
+    "file": "immutable/pages/signup.svelte-73fa99bf.js",
+    "src": "src/routes/signup.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-f7f4432a.js",
+      "_nav-f0ccacfe.js"
+    ],
+    "css": [
+      "immutable/assets/signup-9f4d8bc5.css"
+    ]
+  },
+  "_index-f7f4432a.js": {
+    "file": "immutable/chunks/index-f7f4432a.js"
+  },
+  "_nav-f0ccacfe.js": {
+    "file": "immutable/chunks/nav-f0ccacfe.js",
+    "imports": [
+      "_index-f7f4432a.js"
+    ],
+    "css": [
+      "immutable/assets/nav-b95029b3.css"
+    ]
+  },
+  "src/routes\\about.css": {
+    "file": "immutable/assets/about-9f4d8bc5.css",
+    "src": "src/routes\\about.css"
+  },
+  "src/routes\\signup.css": {
+    "file": "immutable/assets/signup-9f4d8bc5.css",
+    "src": "src/routes\\signup.css"
+  },
+  "src/routes\\login.css": {
+    "file": "immutable/assets/login-e04cb3bb.css",
+    "src": "src/routes\\login.css"
+  },
+  "nav.css": {
+    "file": "immutable/assets/nav-b95029b3.css",
+    "src": "nav.css"
+  },
+  "src/routes\\index.css": {
+    "file": "immutable/assets/index-9b1ce869.css",
+    "src": "src/routes\\index.css"
+  }
+}
