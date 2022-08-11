@@ -1,5 +1,5 @@
 // svelte.config.js
-// import adapter from '@sveltejs/adapter-static';
+import adapter from '@sveltejs/adapter-static';
 import vercel from '@sveltejs/adapter-vercel';
 
 export default {
