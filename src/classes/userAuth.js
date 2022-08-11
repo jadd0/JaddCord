@@ -1,3 +1,5 @@
+import { FriendList } from "./friendList";
+
 export class Auth {
 	constructor(User) {
 		this.User = User;
@@ -44,8 +46,10 @@ export class Auth {
 		return false;
 	}
 
-	createUser({ req }, userList) {
+	createUser({ req }, { obj }) {
 		const user = new this.User(
+			obj.FriendList,
+			obj.CreateFriend,
 			req.email,
 			req.username,
 			req.name,
@@ -53,9 +57,9 @@ export class Auth {
 			req.phoneNumber
 		);
     
-		const username = userList.find((user) => user.username === req.username);
-		const email = userList.find((user) => user.email === req.email);
-		const phoneNumber = userList.find((user) => user.phoneNumber === req.phoneNumber);
+		const username = obj.userList.find((user) => user.username === req.username);
+		const email = obj.userList.find((user) => user.email === req.email);
+		const phoneNumber = obj.userList.find((user) => user.phoneNumber === req.phoneNumber);
 
 		return {
 			user: user,

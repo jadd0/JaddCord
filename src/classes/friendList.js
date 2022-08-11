@@ -1,18 +1,25 @@
 export class FriendList {
-  constructor() {
-
+  constructor(CreateFriend) {
+    this.list = []
+    this.CreateFriend = CreateFriend;
   }
 
-  findFriend() {
+  #findFriend(username, userList) {
+    const user = userList.find((user) => user.username === username);
 
+    return user.UUID
   }
 
-  getToday() {
+  addFriend(username, userList) {
+    // TODO check if user exists
+    // TODO check that not already added
+    // const uuid = this.#findFriend(username)
+    
+    const friend = new this.CreateFriend(username, userList)
 
-  }
+    this.list.push(friend)
 
-  addFriend() {
-
+    console.log(this.list)
   }
 
   deleteFriend() {

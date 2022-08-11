@@ -1,6 +1,6 @@
 export class User {
 	// dont have to use all, just there for DB methods
-	constructor(email, username, name, password, phoneNumber, UUID, QRCode, creationDate, profilePicture, friendAmount, online, authKey, friendList) {
+	constructor(FriendList, CreateFriend, email, username, name, password, phoneNumber, UUID, QRCode, creationDate, profilePicture, friendAmount, online, authKey) {
 		this.email = email;
 		this.username = username;
 		this.name = name;
@@ -13,13 +13,10 @@ export class User {
 		this.friendAmount = friendAmount || null;
 		this.online = online || false;
 		this.authKey = authKey || this.keyGenerator();
-		// this.friendList = friendList || new friendList();
+		this.FriendList = new FriendList(CreateFriend);
+
 	}
 
-	addFriend(list, username) {
-		const user = list.find((user) => user.username === username);
-	}
-	
 	login() {}
 
 	logout() {}

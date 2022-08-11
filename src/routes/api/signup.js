@@ -1,6 +1,8 @@
 import { list } from '../../store.js';
 import { User } from '../../classes/userClass.js'
 import { Auth } from '../../classes/userAuth.js';
+import { FriendList } from '../../classes/friendList.js'
+import { CreateFriend } from '../../classes/makeFriend.js';
 
 const auth = new Auth(User);
 
@@ -14,8 +16,12 @@ list.subscribe(value => {
 /** @type {import('./__types/[id]').RequestHandler} */
 export async function post({ request }) {
 	const req = await request.json();
-
-	const returnedVal = auth.createUser({ req }, userList);
+	const obj = {
+		FriendList: FriendList,
+		userList: userList,
+		CreateFriend: CreateFriend
+	}
+	const returnedVal = auth.createUser({ req }, { obj });
 
 	if (returnedVal.username !== undefined) {
 		return {
