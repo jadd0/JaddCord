@@ -19,6 +19,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@sveltejs/adapter-vercel": "^1.0.0-next.66",
 		"crypto-js": "^4.1.1",
 		"firebase": "^9.9.1",
 		"firebase-scrypt": "^2.2.0",
