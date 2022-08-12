@@ -1,32 +1,57 @@
+// This class is called each time a user is made
 export class FriendList {
-  constructor(CreateFriend) {
-    this.list = []
-    this.CreateFriend = CreateFriend;
-  }
+	constructor(CreateFriend) {
+		// This is the actual list of friends
+		this.list = [];
+		// This is the class to create a friend
+		this.CreateFriend = CreateFriend;
+	}
 
-  #findFriend(username, userList) {
-    const user = userList.find((user) => user.username === username);
+	// Finds the uuid of a user based on the username
+	#findFriend(username, userList) {
+		const user = userList.find((user) => user.username === username);
 
-    return user.UUID
-  }
+		// If no user exists, returns false
+		if (user == undefined) return false;
 
-  addFriend(username, userList) {
-    // TODO check if user exists
-    // TODO check that not already added
-    // const uuid = this.#findFriend(username)
-    
-    const friend = new this.CreateFriend(username, userList)
+		return user.UUID;
+	}
 
-    this.list.push(friend)
+	addFriend(username, userList) {
+		// TODO check if user exists
+		// TODO check that not already added
+		const uuid = this.#findFriend(username, userList);
 
-    console.log(this.list)
-  }
+		console.log(uuid);
 
-  deleteFriend() {
+		if (!uuid) return false;
 
-  }
+		const friend = new this.CreateFriend(uuid, userList);
 
-  blockFriend() {
-    
-  }
+		// If (friend.username == null) return false
+
+		// Adds the friend to the list and returns the username as conformation
+		this.list.push(friend);
+		console.log(this.list);
+		return friend.username;
+	}
+
+	// Deletes the friend from the list of friends
+	deleteFriend(username) {
+		// Gets the uuid of the friend, if the friend exists retuns the uuid, else returns false
+		const uuid = this.#findFriend(username);
+
+		// If no user exists with username, returns false
+		if (!uuid) return false;
+
+		// Removes all occurances of the friend from the list
+		this.list = this.list.filter(function (user) {
+			return user.uuid != uuid;
+		});
+
+		return true;
+	}
+
+	// TODO when develop friend OOP more
+	blockFriend() {}
 }

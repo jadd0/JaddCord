@@ -1,6 +1,6 @@
-import { list } from "../../store.js";
-import { User } from '../../classes/userClass.js'
-import { Auth } from '../../classes/userAuth.js';
+import { list } from "../../../store.js";
+import { User } from '../../../classes/userClass.js'
+import { Auth } from '../../../classes/userAuth.js';
 
 
 

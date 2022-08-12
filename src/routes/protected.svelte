@@ -25,7 +25,7 @@
 	}
 
 	onMount(async () => {
-		const res = await fetch('http://localhost:5173/user')
+		const res = await fetch('http://localhost:5173/api/user')
 		user = await res.json()
 
 		email = user.email;
