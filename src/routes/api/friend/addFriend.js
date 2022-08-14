@@ -40,7 +40,8 @@ export async function post({ request }) {
   }
 
   // Tries to add user, if successful returns the username, else returns false
-  const res = user.FriendList.addFriend(req.username, userList);
+  console.log(req.username, user.username)
+  const res = user.FriendList.addFriend(req.username, userList, user.UUID);
 
   
 

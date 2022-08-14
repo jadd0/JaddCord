@@ -17,7 +17,7 @@ export class FriendList {
 		return user.UUID;
 	}
 
-	addFriend(username, userList) {
+	addFriend(username, userList, myUUID) {
 		// TODO check if user exists
 		// TODO check that not already added
 		const uuid = this.#findFriend(username, userList);
@@ -26,7 +26,7 @@ export class FriendList {
 
 		if (!uuid) return false;
 
-		const friend = new this.CreateFriend(uuid, userList);
+		const friend = new this.CreateFriend(uuid, userList, myUUID);
 
 		// If (friend.username == null) return false
 
@@ -35,6 +35,7 @@ export class FriendList {
 		console.log(this.list);
 		return friend.username;
 	}
+
 
 	// Deletes the friend from the list of friends
 	deleteFriend(username) {

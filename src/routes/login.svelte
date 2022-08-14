@@ -2,7 +2,6 @@
 	import Nav from "../components/nav.svelte";
 	import { onMount } from "svelte";
 
-
 	onMount(() => {
 		document
 			.getElementById("login")
@@ -13,17 +12,6 @@
 
 	let email = "";
 	let password = "";
-	
-	const keyAppend = () => {
-
-	}
-
-	const getExpiryDate = () => {
-		const days = 3;
-		const date = new Date();
-		date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000); 
-		return date
-	}
 
 	const login = () => {
 		// console.log("logim	")
@@ -40,36 +28,14 @@
 				}),
 			});
 
-			
 			if (rawResponse.status == 401) {
 				document.getElementById("incorrect").style.display = "block";
-				return
+				return;
+			} else if (rawResponse.status == 200) {
+				window.location.href = "/app";
 			}
-			
-			else if (rawResponse.status == 200) {
-					window.location.href = '/protected'
-			}
-			
-
-
-
-
-			keyAppend(rawResponse.body)
 		})();
 	};
-
-	const change = () => {
-		const auth = getAuth(app);
-		updateProfile(auth.currentUser, {
-			displayName: "jadd",
-		});
-		console.log(auth.currentUser.reloadUserInfo.localId);
-		createCookie();
-	};
-
-	const auth = () => {
-		
-	}
 </script>
 
 <body>
@@ -96,8 +62,6 @@
 			Your email/password is incorrect. Please try again
 		</h1>
 	</div>
-
-	<button on:click={auth}>auth</button>
 </body>
 
 <!-- <svelte:window on:scroll={b} /> -->
