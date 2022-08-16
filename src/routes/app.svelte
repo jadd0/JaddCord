@@ -38,7 +38,7 @@
 	onMount(async () => {
 		const res = await fetch("http://localhost:5173/api/user");
 		user = await res.json();
-
+		console.log(user)
 		email = user.email;
 		console.log(user.FriendList.list);
 		friends = user.FriendList.list;

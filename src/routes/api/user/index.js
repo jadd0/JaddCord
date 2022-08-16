@@ -24,6 +24,8 @@ export async function get({ request }) {
   
   const user = userList.find((user) => user.email === jwt.email);
 
+  console.log(user.username)
+
   if (user == undefined) {
     return { 
       status: 404, 

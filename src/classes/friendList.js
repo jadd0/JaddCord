@@ -14,28 +14,34 @@ export class FriendList {
 		// If no user exists, returns false
 		if (user == undefined) return false;
 
-		return user.UUID;
+		return user;
 	}
 
-	addFriend(username, userList, myUUID) {
+	addFriend(username, userList) {
 		// TODO check if user exists
 		// TODO check that not already added
-		const uuid = this.#findFriend(username, userList);
 
-		console.log(uuid);
+		if (this.#findFriend(username, this.list)) return false
 
-		if (!uuid) return false;
 
-		const friend = new this.CreateFriend(uuid, userList, myUUID);
+		const user = this.#findFriend(username, userList);
 
-		// If (friend.username == null) return false
+		if (!user) return false;
+
+		const friend = new this.CreateFriend(user, userList);
+
+		console.log("FRIEND",friend)
+
+		if (friend.username == null) return false;
 
 		// Adds the friend to the list and returns the username as conformation
 		this.list.push(friend);
-		console.log(this.list);
+
+		
 		return friend.username;
 	}
 
+	addFriendONE(UUID, list) {}
 
 	// Deletes the friend from the list of friends
 	deleteFriend(username) {
