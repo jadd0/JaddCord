@@ -25,8 +25,6 @@
 		window.location.reload();
 	}
 
-
-
 	// const changeSize = () => {
 	// 	const holder = document.getElementById("messageInputHolder")
 	// 	const input = document.getElementById("input").clientHeight
@@ -38,13 +36,10 @@
 	onMount(async () => {
 		const res = await fetch("http://localhost:5173/api/user");
 		user = await res.json();
-		console.log(user)
+		console.log(user);
 		email = user.email;
 		console.log(user.FriendList.list);
 		friends = user.FriendList.list;
-
-	
-		
 	});
 </script>
 
@@ -58,13 +53,13 @@
 	{#if email != undefined}
 		<div id="whole">
 			<div id="friendContainer">
-				<input type="text">
+				<button>Hello</button>
 				{#each friends as friend}
-					<div id="friend">
-						<span>{friend.name}</span>
-					</div>
-					
-					
+					<a href="/app">
+						<div id="friend">
+							<span>{friend.name}</span>
+						</div>
+					</a>
 				{/each}
 			</div>
 
@@ -72,7 +67,7 @@
 				<div id="messageBoard" />
 				<div id="messageInputHolder">
 					<!-- <textarea type="text" /> -->
-					<span id="input" role="textbox" contenteditable></span>
+					<span id="input" role="textbox" contenteditable />
 				</div>
 
 				<!-- <button on:click={del}>Logout</button> -->
@@ -102,6 +97,10 @@
 		box-sizing: border-box;
 		font-family: "fenix";
 		font-weight: 500;
+	}
+
+	a {
+		text-decoration: none;
 	}
 
 	#whole {
@@ -143,7 +142,7 @@
 		bottom: 0vh;
 		width: 80vw;
 		height: auto;
-    padding: 20px;
+		padding: 20px;
 		background: white;
 		/* float: bottom; */
 		display: flex;
@@ -163,5 +162,8 @@
 		overflow-wrap: break-word;
 		overflow: scroll;
 		/* margin-bottom: 10px; */
+	}
+
+	span {
 	}
 </style>
