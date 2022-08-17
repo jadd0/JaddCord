@@ -1,7 +1,7 @@
 <script context="module">
 	export const prerender = false;
 	export async function load({ session }) {
-		if (session.authenticated == false) {
+		if (!session.authenticated) {
 			return {
 				status: 302,
 				redirect: "http://localhost:5173/login",
