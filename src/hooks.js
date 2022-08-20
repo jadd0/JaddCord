@@ -37,7 +37,6 @@ list.subscribe((value) => {
 // if app and not auth, redirect
 
 export const handle = async ({ event, resolve}) => {
-	return new Response('Redirect', {status: 303, headers: { Location: '/login' }})
 	const isApp = event.url.pathname.startsWith('/app')
 	const response = await resolve(event)
 
@@ -54,6 +53,6 @@ export const handle = async ({ event, resolve}) => {
 		return new Response('Redirect', {status: 303, headers: { Location: '/login' }})
 	}
 
-
+	console.log(response)
 	return response
 }
