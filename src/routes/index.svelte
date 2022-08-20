@@ -31,12 +31,12 @@
 
 <style>
 	@font-face {
-		font-family: "lufga";
+		font-family: "fenix";
 		font-style: normal;
 		font-weight: 400;
-		src: local("Fontspring-DEMO-lufga-regular"),
-			local("Fontspring-DEMO-lufga-regular"),
-			url(Fontspring-DEMO-lufga-regular.woff) format("woff");
+		src: local("Fontspring-DEMO-fenix-regular"),
+			local("Fontspring-DEMO-fenix-regular"),
+			url(Fontspring-DEMO-fenix-regular.woff) format("woff");
 	}
 
 	@font-face {
@@ -73,7 +73,7 @@
 		border: 0;
 		outline: 0;
 		box-sizing: border-box;
-		font-family: "lufga";
+		font-family: "fenix";
 		font-weight: 500;
 	}
 

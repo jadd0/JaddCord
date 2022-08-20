@@ -23,7 +23,7 @@ export async function post({ request }) {
   }
   
   const req = await request.json()
-  console.log(req)
+  // console.log(req)
   // todo first 10 users matching
 
 
@@ -33,7 +33,7 @@ export async function post({ request }) {
   const items = copy
     .filter(user => user.username.indexOf(req.query) !== -1)
     .map(a => a.username);
-  console.log(items)
+  // console.log(items)
 
   return {
     status: 200,

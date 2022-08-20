@@ -1,5 +1,3 @@
-import { FriendList } from "./friendList";
-
 export class Auth {
 	constructor(User) {
 		this.User = User;
@@ -34,7 +32,7 @@ export class Auth {
 
 		if (user !== undefined) {
 			if (user.password === password) {
-				console.log(email + " logged in successfully");
+				// console.log(email + " logged in successfully");
 
 				// if the username and password are correct
 				return user;

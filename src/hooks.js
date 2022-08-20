@@ -7,7 +7,7 @@ const auth = new Auth(User);
 let userList = [];
 
 
-console.log(typeof userList)
+
 
 list.subscribe((value) => {
 	userList = value;

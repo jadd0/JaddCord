@@ -66,8 +66,8 @@
 		font-family: "fenix";
 		font-style: normal;
 		font-weight: 400;
-		src: local("Fenix-Regular"), local("Fenix-Regular"),
-			url(Fenix-Regular.woff) format("woff");
+		src: local("fenix-Regular"), local("fenix-Regular"),
+			url(fenix-Regular.woff) format("woff");
 	} */
 
 	* {
@@ -85,7 +85,7 @@
 
 	#navbar {
 		width: 100vw;
-		height: 12vh;
+		height: 80px;
 		padding: 0;
 		background-color: #141414;
 		position: sticky;
@@ -127,7 +127,7 @@
 
 	#left {
 		width: 80vw;
-		max-height: 12vh;
+		max-height: 80px;
 		padding: 0;
 		/* background-color: #141414; */
 		position: sticky;
@@ -147,7 +147,7 @@
 		margin: 0 auto;
 		text-align: center;
 		vertical-align: middle;
-		line-height: 12vh;
+		line-height: 80px;
 		color: white;
 	}
 
