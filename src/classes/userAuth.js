@@ -77,7 +77,7 @@ export class Auth {
 	generateCookie(user, days) {
 		const jwt = user.generateJWT();
 
-		const cookie = `jwt=${JSON.stringify(jwt)}; path=/; Expires=${this.generateExpiry(3)}`;
+		const cookie = `jwt=${JSON.stringify(jwt)}; path=/; Expires=${this.generateExpiry(3)}; HostOnly=false; Secure=lax`;
 
 		return cookie;
 	}
