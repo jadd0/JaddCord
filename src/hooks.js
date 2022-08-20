@@ -40,6 +40,8 @@ export const handle = async ({ event, resolve}) => {
 	const isApp = event.url.pathname.startsWith('/app')
 	const response = await resolve(event)
 
+	console.log(response)
+
 	if (!isApp) {
 		return response
 	}
