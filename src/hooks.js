@@ -51,9 +51,10 @@ export const handle = async ({ event, resolve}) => {
 	const user = auth.checkJWT(cookie, userList);
 
 	console.log(user)
-	if (!user) {
-		return new Response('Redirect', {status: 303, headers: { Location: '/login' }})
-	}
+	// if (!user) {
+	// 	return new Response('Redirect', {status: 303, headers: { Location: '/login' }})
+	// }
+	
 
 	console.log(response)
 	return response
