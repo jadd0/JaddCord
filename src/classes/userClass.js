@@ -102,4 +102,8 @@ export class User {
 			}
 		);
 	}
+
+	createProfilePicture() {
+		const widthHeight = 400
+	}
 }

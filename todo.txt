@@ -3,15 +3,16 @@ users:
     create user OOP system XXX
     add id and username to each user XXX
     private user profile ability
+    automatic profile pic creation
 
 design:
     opening page XXX
     login page XXX
-    friends page
+    friends page 
     messaging page
     profile page
     settings page
-    other user profile page
+    other user profile page 
 
 server:
     websocket setup
@@ -32,6 +33,10 @@ server:
 other ideas:
     time spent on, same as reddit
     longer on, avatars
+    random facts
+    
+    friendBar:
+        usually thin, but when hovered expands, elastically
     
 
 

@@ -1,18 +1,3 @@
-<script context="module">
-	// export const prerender = false;
-	// export async function load({ session }) {
-	// 	if (!session.authenticated) {
-	// 		return {
-	// 			status: 302,
-	// 			redirect: "http://localhost:5173/login",
-	// 		};
-	// 	}
-	// 	return {
-	// 		props: session.email,
-	// 	};
-	// }
-</script>
-
 <script>
 	import { onMount } from "svelte";
 	import AddFriendPopUp from "../addFriendPopUp.svelte";
