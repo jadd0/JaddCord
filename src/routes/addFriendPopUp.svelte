@@ -1,5 +1,6 @@
 <script>
 	let users = [];
+	// export let bool = false
 	const postQuery = async () => {
 		const val = document.getElementById("friendInput").value;
 
@@ -24,7 +25,7 @@
 	};
 
 	async function addFriend(event) {
-		const username = event.srcElement.outerText
+		const username = event.srcElement.outerText;
 		await fetch("/api/friend/addFriend", {
 			method: "post",
 			headers: {
@@ -34,21 +35,27 @@
 			body: JSON.stringify({ username: username }),
 		});
 	}
+
+	function hello() {
+		// bool = false
+		document.getElementById("all").style.display = "none"
+	}
 </script>
 
 <svelte:window on:keyup={postQuery} />
 
-<div id="wholePage">
+<div id="all">
+	<div id="wholePage" on:click={hello} />
 	<div id="container">
 		<h1>Add Friend</h1>
 		<input id="friendInput" type="text" />
 		<div id="friendContainer">
 			{#each users as user}
-				<button href="" on:click={addFriend}>
-					<div id="friend">
+				<div id="friend">
+					<a href="" on:click={addFriend}>
 						<span>{user}</span>
-					</div>
-				</button>
+					</a>
+				</div>
 			{/each}
 		</div>
 	</div>
@@ -62,13 +69,25 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		background: #141414;
+		opacity: 0.7;
+		position: absolute;
+		z-index: 0;
+		margin-top: -27.33px;
 	}
 
 	#container {
-		background-color: blue;
-		width: 500px;
-		height: 700px;
+		/* background-color: #393939; */
+		background: #141414;
+		width: 400px;
+		height: 80vh;
 		display: grid;
+		overflow: hidden;
+		position: absolute;
+		/* margin: 0 auto; */
+		top: 10%;
+		left: 35%;
+		z-index: 1;
 		/* align-items: center; */
 	}
 
@@ -77,24 +96,26 @@
 		color: white;
 		/* min-width: 500px; */
 		margin: 0 auto;
+		margin-top: 20px;
 	}
 
 	input {
-		width: 50%;
+		width: 300px;
 		height: 20px;
 		margin: 0 auto;
-		position: absolute;
+		margin-top: 10px;
+		/* position: absolute;
 		top: 30%;
-		left: 26%;
+		left: 26%; */
 	}
 
 	#friendContainer {
 		/* width: 20vw; */
 		position: relative;
 		top: 16.5%;
-		height: 50vh;
-		background-color: #1b1b1b;
-		float: left;
+		height: 70vh;
+		/* background-color: #393939; */
+		overflow: scroll;
 	}
 
 	a {

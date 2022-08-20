@@ -2,9 +2,10 @@ users:
     create user DB XXX
     create user OOP system XXX
     add id and username to each user XXX
+    private user profile ability
 
 design:
-    opening page
+    opening page XXX
     login page XXX
     friends page
     messaging page

@@ -1,38 +1,44 @@
 <script context="module">
-	export const prerender = false;
-	export async function load({ session }) {
-		if (!session.authenticated) {
-			return {
-				status: 302,
-				redirect: "http://localhost:5173/login",
-			};
-		}
-		return {
-			props: session.email,
-		};
-	}
+	// export const prerender = false;
+	// export async function load({ session }) {
+	// 	if (!session.authenticated) {
+	// 		return {
+	// 			status: 302,
+	// 			redirect: "http://localhost:5173/login",
+	// 		};
+	// 	}
+	// 	return {
+	// 		props: session.email,
+	// 	};
+	// }
 </script>
 
 <script>
 	import { onMount } from "svelte";
+	import AddFriendPopUp from "../addFriendPopUp.svelte";
+
 	let email;
 	let friends;
+	export let bool = false;
+	// $: bool = false
 
 	let user = {};
 
-	function del() {
-		document.cookie = `jwt=0; path=/;`;
-		window.location.reload();
-	}
-
-	// const changeSize = () => {
-	// 	const holder = document.getElementById("messageInputHolder")
-	// 	const input = document.getElementById("input").clientHeight
-
-	// 	console.log(input)
-	// 	document.getElementById("messageInputHolder").setAttribute('style',`height:${input+30}px`)
+	// function del() {
+	// 	document.cookie = `jwt=0; path=/;`;
+	// 	window.location.reload();
 	// }
 
+	function show() {
+		// const h = new AddFriendPopUp()
+		// console.log(h)
+		// window.getElementById("all").style.display = "block"
+		// bool = false
+		// console.log("heplo")
+		// bool = true
+		bool === true ? (bool = false) : (bool = true)
+	}
+	
 	onMount(async () => {
 		const res = await fetch("http://localhost:5173/api/user");
 		user = await res.json();
@@ -40,7 +46,16 @@
 		email = user.email;
 		console.log(user.FriendList.list);
 		friends = user.FriendList.list;
+
+		// const h = document.getElementById("wholePage")
+	
+		// h.addEventListener("click") = function() {
+		// 		bool = false;
+		// }
 	});
+
+	
+	
 </script>
 
 <!-- {#if response.status == 200}
@@ -53,7 +68,10 @@
 	{#if email != undefined}
 		<div id="whole">
 			<div id="friendContainer">
-				<button>Hello</button>
+				<button on:click={show}>Hello</button>
+				{#if bool == true}
+					<AddFriendPopUp />
+				{/if} 
 				{#each friends as friend}
 					<a href="/app">
 						<div id="friend">
