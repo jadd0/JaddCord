@@ -28,7 +28,7 @@ export async function post({ request }) {
 
 	// Parses data and gets the username of user to add
 	const req = await request.json();
-	console.log(user.username);
+	// console.log(user.username);
 
 	// Doesn't let you add yourself, returns a 404
 	if (user.username == req.username) {
@@ -39,7 +39,7 @@ export async function post({ request }) {
 	}
 
 	// Tries to add user, if successful returns the username, else returns false
-	console.log(req.username, user.username);
+	// console.log(req.username, user.username);
 
 	const friend = user.FriendList.addFriend(
 		req.username,

@@ -30,7 +30,7 @@ export class FriendList {
 
 		const friend = new this.CreateFriend(user, userList);
 
-		console.log("FRIEND",friend)
+		// console.log("FRIEND",friend)
 
 		if (friend.username == null) return false;
 

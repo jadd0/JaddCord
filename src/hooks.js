@@ -37,10 +37,10 @@ list.subscribe((value) => {
 // if app and not auth, redirect
 
 export const handle = async ({ event, resolve}) => {
-	console.log("hello")
+	// console.log("hello")
 	const isApp = event.url.pathname.startsWith('/app')
 	const response = await resolve(event)
-	console.log(isApp)
+	// console.log(isApp)
 	// console.log(response)
 	// return response
 	if (!isApp) {
@@ -51,7 +51,7 @@ export const handle = async ({ event, resolve}) => {
 	// console.log(cookie)
 	const user = auth.checkJWT(cookie, userList);
 
-	console.log("hello", user)
+	// console.log("hello", user)
 	if (!user) {
 		return new Response('Redirect', {status: 303, headers: { Location: '/login' }})
 	}

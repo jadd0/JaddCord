@@ -78,7 +78,7 @@
 
 	#container {
 		/* background-color: #393939; */
-		background: #141414;
+		background: #1b1b1b;
 		width: 400px;
 		height: 80vh;
 		display: grid;

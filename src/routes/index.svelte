@@ -30,7 +30,7 @@
 <!-- <svelte:window on:scroll={scrollF}/> -->
 
 <style>
-	@font-face {
+	/* @font-face {
 		font-family: "fenix";
 		font-style: normal;
 		font-weight: 400;
@@ -53,7 +53,7 @@
 		font-weight: 400;
 		src: local("rubik-latin-400"), local("rubik-latin-400"),
 			url(rubik-latin-400.woff2) format("woff");
-	}
+	} */
 
   body {
 		margin: 0;

@@ -12,8 +12,8 @@ list.subscribe((value) => {
 
 /** @type {import('./$types').PageLoad} */
 export function get({ request, params }) {
-  console.log("benfne")
-  console.log(params)
+  // console.log("benfne")
+  // console.log(params)
   const jwt = auth.checkJWT(request.headers.get("cookie"), userList)
 
   if (!jwt) {
@@ -30,7 +30,7 @@ export function get({ request, params }) {
     body: {error: "No user found"}
   }
 
-  console.log(user.name)
+  // console.log(user.name)
 
 
   return {

@@ -43,7 +43,7 @@ export async function post({ request }) {
 	userList.push(returnedVal.user)
 	list.set([...userList])
 
-	console.log(returnedVal.user)
+	// console.log(returnedVal.user)
 	
 	return {
 		headers: {'set-cookie': auth.generateCookie(returnedVal.user, 3)},
