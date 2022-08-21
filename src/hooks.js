@@ -43,9 +43,9 @@ export const handle = async ({ event, resolve}) => {
 	console.log(isApp)
 	// console.log(response)
 
-	if (!isApp) {
-		return response
-	}
+	// if (!isApp) {
+	// 	return response
+	// }
 
 	const cookie = event.request.headers.get("cookie");
 	// console.log(cookie)
