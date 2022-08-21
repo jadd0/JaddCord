@@ -42,10 +42,10 @@ export const handle = async ({ event, resolve}) => {
 	const response = await resolve(event)
 	console.log(isApp)
 	// console.log(response)
-	return response
-	// if (!isApp) {
-	// 	return response
-	// }
+	// return response
+	if (!isApp) {
+		return response
+	}
 
 	const cookie = event.request.headers.get("cookie");
 	// console.log(cookie)
