@@ -14,7 +14,7 @@ list.subscribe((value) => {
 
 export async function get({ request }) {
   const jwt = auth.checkJWT(request.headers.get("cookie"), userList)
-  console.log(jwt)
+  // console.log(jwt)
   if (!jwt) {
     return {
       status: 401,
