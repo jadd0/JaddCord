@@ -3,23 +3,23 @@
 	import AddFriendPopUp from "../addFriendPopUp.svelte";
 
 	let email;
-	let friends;
 	export let bool = false;
 	// $: bool = false
 
 	let user = {};
+	let friendList = [];
+	let items = [];
 
 	function findFriend() {
-		console.log(friendSearchValue);
+		// if(friendSearchValue == '') return
+		items = friends
+			.filter((user) => user.username.indexOf(friendSearchValue) !== -1)
+			.map((a) => a.username);
+		console.log(items);
 	}
 
-
-	let friendSearchValue = '';
-	$: {
-		let arr = []
-		
-		console.log(friendSearchValue)
-	}
+	let friends = [];
+	let friendSearchValue = "";
 
 	let expanded = false;
 
@@ -45,29 +45,8 @@
 		email = user.email;
 		console.log(user.FriendList.list);
 		friends = user.FriendList.list;
-
-		// document.getElementById("friendSearch").style.height = "27px";
-
-		// const h = document.getElementById("wholePage")
-
-		// h.addEventListener("click") = function() {
-		// 		bool = false;
-		// }
 	});
 
-	// const seeMore = document.getElementById("seeMoreBtn");
-	// const article = document.getElementById("article");
-
-	// seeMore.addEventListener("click", () => {
-	// 	article.classList.toggle("expanded");
-
-	// 	const expanded = article.classList.contains("expanded");
-	// 	if (expanded) {
-	// 		seeMore.innerHTML = "See Less";
-	// 	} else {
-	// 		seeMore.innerHTML = "See More";
-	// 	}
-	// });
 	function change() {}
 
 	function expand() {
@@ -80,7 +59,7 @@
 		// 	return;
 		// }
 
-		box.style.cursor = "normal"
+		box.style.cursor = "normal";
 
 		box.style.height = "94vh";
 		expanded = true;
@@ -98,10 +77,6 @@
 		// box.style.height === "94vh"
 		box.style.height = "27px";
 	}
-
-	// $: if (document.getElementById('friendSearch') !== document.activeElement) {
-	// 	document.getElementById("friendSearch").style.height = "3vh"
-	// }
 </script>
 
 <!-- {#if response.status == 200}
@@ -118,10 +93,22 @@
 				<div type="text" id="friendSearch" on:click={expand}>
 					{#if expanded == true}
 						<div id="searchHolder">
-							<img src='search.png' id="searchImage"/>
-							<input type="text" bind:value={friendSearchValue} id="search"/>
+							<img src="search.png" id="searchImage" />
+							<input
+								type="text"
+								bind:value={friendSearchValue}
+								on:input={findFriend}
+								id="search"
+							/>
+							{#each items as item}
+								<div id="searchedFriend">
+									{item}
+								</div>
+							{/each}
+							{#if items.length == 0}
+								<h1>Nothing to display</h1>
+							{/if}
 						</div>
-						
 					{/if}
 				</div>
 
@@ -177,6 +164,15 @@
 		text-decoration: none;
 	}
 
+	#searchedFriend {
+		text-align: center;
+		line-height: 5vh;
+		width: 100%;
+		height: 5vh;
+		/* background: #1b1b1b; */
+		border-bottom: solid 1px rgb(145, 145, 145);
+	}
+
 	#searchImage {
 		position: absolute;
 		left: 2vw;
@@ -230,7 +226,7 @@
 		left: 2.5vw;
 		/* margin-top: 20px; */
 		border-radius: 30px;
-		background: rgb(61, 61, 61);
+		background: rgb(41, 41, 41);
 		transition: all 0.5s;
 	}
 
