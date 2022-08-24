@@ -1,4 +1,5 @@
 <script>
+	import { page } from "$app/stores";
 	export let user;
 	export let friendBool;
 
@@ -12,9 +13,21 @@
 	let friends;
 	export let bool = false;
 
-
 	function show() {
 		bool === true ? (bool = false) : (bool = true);
+	}
+
+	async function addFriend() {
+		console.log("hello");
+		const username = $page.params.username;
+		await fetch("http://localhost:5173/api/friend/addFriend", {
+			method: "post",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ username: username }),
+		});
 	}
 </script>
 
@@ -33,6 +46,9 @@
 			<div id="nameHolder">
 				<h1>{user.name}</h1>
 				<h2>@{user.username}</h2>
+				{#if friendBool == false}
+					<button on:click={addFriend} />
+				{/if}
 			</div>
 		</div>
 	</div>

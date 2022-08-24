@@ -41,7 +41,7 @@ export function get({ request, params }) {
   const isFriend = (jwt.FriendList.list).find((user) => user.username === params.username);
   let friendBool = false
 
-  isFriend === undefined ? pass : friendBool = true;
+  isFriend === undefined ? null : friendBool = true;
   
 
   return {
