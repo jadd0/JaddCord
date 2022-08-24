@@ -28,6 +28,7 @@
 			},
 			body: JSON.stringify({ username: username }),
 		});
+		location.reload()
 	}
 </script>
 
