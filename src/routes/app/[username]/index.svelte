@@ -1,10 +1,12 @@
 <script>
 	export let user;
-	export let self;
+	export let friendBool;
 
-	if (self) {
-		console.log("true")
-	}
+	console.log(friendBool);
+
+	// if (self) {
+	// 	console.log("true")
+	// }
 
 	let email;
 	let friends;
@@ -29,8 +31,8 @@
 		<!-- <h2>Hey {user.name}</h2> -->
 		<div id="container2">
 			<div id="nameHolder">
-				<!-- <h1>{user.name}</h1>
-				<h2>@{user.username}</h2> -->
+				<h1>{user.name}</h1>
+				<h2>@{user.username}</h2>
 			</div>
 		</div>
 	</div>

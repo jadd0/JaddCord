@@ -31,26 +31,21 @@ export function get({ request, params }) {
   }
 
   else if (user.UUID == jwt.UUID) {
-    console.log("hello")
     return {
       status: 302,
-			headers: {location: "http://localhost:5173/app/profile"},
+			headers: {location: "/app/profile"},
     }
   }
 
-  // console.log(user.name)
+  // console.log(jwt.FriendList.list)
+  const isFriend = (jwt.FriendList.list).find((user) => user.username === params.username);
+  let friendBool = false
 
+  isFriend === undefined ? pass : friendBool = true;
+  
 
   return {
     status: 200,
-    body: {user: user}
+    body: {user: user, friendBool: friendBool}
   }
-  // if (params.slug === 'hello-world') {
-  //   return {
-  //     title: 'Hello world!',
-  //     content: 'Welcome to our blog. Lorem ipsum dolor sit amet...'
-  //   };
-  // }
- 
-  // throw error(404, 'Not found');
 }
