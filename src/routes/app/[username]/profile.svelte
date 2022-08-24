@@ -1,30 +1,19 @@
 <script>
-  // import { page } from '$app/stores';
-
 	export let user;
+	export let self;
+
+	if (self) {
+		console.log("true")
+	}
 
 	let email;
 	let friends;
 	export let bool = false;
-	// $: bool = false
 
-	// let user = {};
-
-	// function del() {
-	// 	document.cookie = `jwt=0; path=/;`;
-	// 	window.location.reload();
-	// }
 
 	function show() {
 		bool === true ? (bool = false) : (bool = true);
 	}
-
-	// 	// const h = document.getElementById("wholePage")
-
-	// 	// h.addEventListener("click") = function() {
-	// 	// 		bool = false;
-	// 	// }
-	// });
 </script>
 
 <body>
@@ -40,8 +29,8 @@
 		<!-- <h2>Hey {user.name}</h2> -->
 		<div id="container2">
 			<div id="nameHolder">
-				<h1>{user.name}</h1>
-				<h2>@{user.username}</h2>
+				<!-- <h1>{user.name}</h1>
+				<h2>@{user.username}</h2> -->
 			</div>
 		</div>
 	</div>
@@ -103,7 +92,7 @@
 	#ppHolder {
 		width: 33vw;
 		height: 100vh;
-		background: green;
+		background: #1b1b1b;
 		display: grid;
 		justify-content: center;
 		align-items: center;
@@ -134,7 +123,7 @@
 	#container2 {
 		width: 77vw;
 		height: 100vh;
-		background: blue;
+		background: none;
 		float: right;
 	}
 </style>

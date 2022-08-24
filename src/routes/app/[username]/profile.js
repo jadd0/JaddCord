@@ -30,6 +30,14 @@ export function get({ request, params }) {
     body: {error: "No user found"}
   }
 
+  else if (user.UUID == jwt.UUID) {
+    console.log("hello")
+    return {
+      status: 302,
+			headers: {location: "http://localhost:5173/app/profile"},
+    }
+  }
+
   // console.log(user.name)
 
 
