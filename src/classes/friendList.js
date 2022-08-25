@@ -44,17 +44,22 @@ export class FriendList {
 	addFriendONE(UUID, list) {}
 
 	// Deletes the friend from the list of friends
-	deleteFriend(username) {
+	deleteFriend(username, list) {
 		// Gets the uuid of the friend, if the friend exists retuns the uuid, else returns false
-		const uuid = this.#findFriend(username);
+		console.log("delte")
+		const user = this.#findFriend(username, list);
 
 		// If no user exists with username, returns false
-		if (!uuid) return false;
-
+		if (!user) return false;
+		console.log(user)
 		// Removes all occurances of the friend from the list
-		this.list = this.list.filter(function (user) {
-			return user.uuid != uuid;
-		});
+		const newList = this.list.filter(function (user1) {
+			return user1.UUID != user.UUID;
+		});	
+
+		this.list = newList
+
+		// console.log("UUID", h)
 
 		return true;
 	}

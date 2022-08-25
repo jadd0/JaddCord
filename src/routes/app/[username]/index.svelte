@@ -1,8 +1,13 @@
 <script>
 	import { page } from "$app/stores";
+	import { onMount } from "svelte";
+
 	export let user;
 	export let friendBool;
 
+	const img = `/${user.profilePicture}`;
+
+	console.log(img);
 	console.log(friendBool);
 
 	// if (self) {
@@ -12,6 +17,16 @@
 	let email;
 	let friends;
 	export let bool = false;
+
+	onMount(() => {
+		document.getElementById(
+			"profilePicture"
+		).style.backgroundImage = `url(${img})`;
+
+		console.log(
+			document.getElementById("profilePicture").style.backgroundImage
+		);
+	});
 
 	function show() {
 		bool === true ? (bool = false) : (bool = true);
@@ -28,7 +43,21 @@
 			},
 			body: JSON.stringify({ username: username }),
 		});
-		location.reload()
+		location.reload();
+	}
+
+	async function delFriend() {
+		console.log("hello");
+		const username = $page.params.username;
+		await fetch("http://localhost:5173/api/friend/deleteFriend", {
+			method: "post",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ username: username }),
+		});
+		location.reload();
 	}
 </script>
 
@@ -48,8 +77,13 @@
 				<h1>{user.name}</h1>
 				<h2>@{user.username}</h2>
 				{#if friendBool == false}
-					<button on:click={addFriend} />
+					<button on:click={addFriend}>Add Friend</button>
 				{/if}
+				{#if friendBool == true}
+					<button on:click={delFriend}>Delete Friend</button>
+				{/if}
+
+				<img src={img} />
 			</div>
 		</div>
 	</div>
@@ -127,6 +161,10 @@
 		height: 300px;
 		border: 2px solid white;
 		border-radius: 400px;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		/* background-image: url(img); */
 		/* margin: 150px; */
 	}
 
