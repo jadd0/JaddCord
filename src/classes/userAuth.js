@@ -21,6 +21,8 @@ export class Auth {
 
 		const user = this.login(jwt.email, jwt.password, userList);
 
+		console.log("CheckJWT", user)
+
 		if (user.authKey != jwt.authKey) return false;
 
 		return user;
