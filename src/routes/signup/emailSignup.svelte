@@ -1,14 +1,12 @@
 <script>
-  export let username = ""
+  export let email = ""
 </script>
 
 
 
 <section>
-  <h1>username</h1>
-  <input type="username" id="username" placeholder="username" bind:value={username} />
-
-  <button>Next</button>
+  <h1>Email</h1>
+  <input type="email" id="email" placeholder="email" bind:value={email} />
 </section>
 
 

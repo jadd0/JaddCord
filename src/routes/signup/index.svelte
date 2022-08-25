@@ -1,11 +1,19 @@
 <script>
 	import Nav from "../../components/nav.svelte";
+	import EmailSignup from "./emailSignup.svelte"
+	// import UsernameSignup from "./usernameSignup.svelte"
+	// import PasswordSignup from "./passwordSignup.svelte"
+	// import BirthdaySignup from "./birthdaySignup.svelte"
+	
 
-	let email = "";
-	let username = "";
-	let name = "";
-	let password = "";
-	let phoneNumber = "";
+	let progress = 0
+	let width = "";
+
+	let emailParent = "";
+	let usernameParent = "";
+	let nameParent = "";
+	let passwordParent = "";
+	let phoneNumberParent = "";
 
 
 	// TODO encrypt
@@ -44,12 +52,22 @@
 		
 	};
 
-	const change = () => {};
+	const next = () => {
+		const prog = ["email", "username", "password"]
+
+		
+	};
 </script>
 
 <body>
 	<Nav />
-	<input type="email" id="email" placeholder="email" bind:value={email} />
+	
+	<EmailSignup bind:email={emailParent} />
+	<button on:click={next}>next</button>
+
+	<p>Reactive value in the parent component: {emailParent}</p>
+
+	<!-- <input type="email" id="email" placeholder="email" bind:value={email} />
 	<input
 		type="text"
 		id="username"
@@ -68,10 +86,10 @@
 		id="phoneNumber"
 		placeholder="phoneNumber"
 		bind:value={phoneNumber}
-	/>
-	<button on:click={signUp}>Sign Up</button>
+	/> -->
+	<!-- <button on:click={signUp}>Sign Up</button>
 
-	<a href="/login">Login Instead</a>
+	<a href="/login">Login Instead</a> -->
 </body>
 
 <!-- <svelte:window on:scroll={b} /> -->
