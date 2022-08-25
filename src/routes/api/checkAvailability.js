@@ -1,26 +1,30 @@
-import { list } from '../../store.js';
+import { list } from "../../store.js";
 let userList = [];
 
-list.subscribe(value => {
-	userList = value
+list.subscribe((value) => {
+	userList = value;
 });
 
-export async function post ({ request }) {
-  const req = await request.json();
-  const param = req.param
-  const body = req.username
+export async function post({ request }) {
+	const req = await request.json();
+	const params = req.params;
+	const body = req.body;
 
-  const userBool = userList.find((user) => user[param] === body);
+  console.log(params, body)
+  
 
-  if (userBool !== undefined) {
-    return {
-      staus: 406,
-      body: {param: param}
-    }
-  }
+	const user = userList.find((user) => user[params] === body);
 
-  else return {
-    staus: 200,
-    body: {param: param}
-  }
-} 
+	console.log(user);
+	if (user == undefined) {
+		return {
+			staus: 200,
+			body: { param: params },
+		};
+	}
+        
+	return {
+		status: 406,
+		body: { param: params },
+	};
+}
