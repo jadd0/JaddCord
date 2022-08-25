@@ -5,6 +5,9 @@
 	// import PasswordSignup from "./passwordSignup.svelte"
 	// import BirthdaySignup from "./birthdaySignup.svelte"
 	
+	const prog = ["email", "username", "password"]
+
+	let userData = ["", "", ""]
 
 	let progress = 0
 	let width = "";
@@ -20,21 +23,18 @@
 
 	const signUp = () => {
 		const data = {
-			email: email,
-			username: username,
-			name: name,
-			password: password,
-			phoneNumber: phoneNumber,
-		};
+			params: prog[progress],
+			body: userData[progress]
+		}
 
-		if (email == "" || username == "" || name == "" || password == "" || phoneNumber == "") {
+		if (email == "") {
 			console.log("empty")
 			return
 		}
 
 		// console.log(JSON.stringify(data))
 		(async () => {
-			const rawResponse = await fetch("/api/signup", {
+			const rawResponse = await fetch(`/api/checkAvailability`, {
 				method: "POST",
 				headers: {
 					Accept: "application/json",
@@ -44,28 +44,28 @@
 			});
 
 
-			if (rawResponse.status == 200) {
-			window.location.href = '/app'
-		}
+		// 	if (rawResponse.status == 200) {
+		// 	window.location.href = '/app'
+		// }
 		})();
 
 		
 	};
 
 	const next = () => {
-		const prog = ["email", "username", "password"]
-
 		
+
+
 	};
 </script>
 
 <body>
 	<Nav />
 	
-	<EmailSignup bind:email={emailParent} />
-	<button on:click={next}>next</button>
+	<EmailSignup bind:email={userData[progress]} />
+	<button on:click={signUp}>next</button>
 
-	<p>Reactive value in the parent component: {emailParent}</p>
+	<p>Reactive value in the parent component: {userData[progress]}</p>
 
 	<!-- <input type="email" id="email" placeholder="email" bind:value={email} />
 	<input
