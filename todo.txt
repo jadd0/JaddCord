@@ -10,9 +10,9 @@ design:
     login page XXX
     friends page 
     messaging page
-    profile page
+    profile page XXX
     settings page
-    other user profile page 
+    other user profile page XXX
 
 server:
     websocket setup
@@ -36,9 +36,13 @@ other ideas:
     random facts
     
     friendBar:
-        usually thin, but when hovered expands, elastically
+        usually thin, but when hovered expands, elastically XXX
     
 
 
 cookie = login auto XXX
 encrypt cookie
+
+
+FRIEND LIST: 
+    whenever get friend list, populate data serverside

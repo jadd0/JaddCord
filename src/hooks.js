@@ -37,8 +37,6 @@ list.subscribe((value) => {
 // if app and not auth, redirect
 
 export const handle = async ({ event, resolve}) => {
-
-	console.log("hello")
 	const isApp = event.url.pathname.startsWith('/app')
 	const response = await resolve(event)
 	// console.log(isApp)
