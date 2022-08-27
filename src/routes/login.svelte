@@ -66,6 +66,17 @@
 
 <!-- <svelte:window on:scroll={b} /> -->
 <style>
+
+@import url("https://rsms.me/inter/inter.css");
+	* {
+		font-family: "Inter", sans-serif;
+		font-weight: black;
+	}
+	@supports (font-variation-settings: normal) {
+		* {
+			font-family: "Inter var", sans-serif;
+		}
+	}
 	body {
 		margin: 0;
 		padding: 0;
@@ -84,8 +95,8 @@
 		border: 0;
 		outline: 0;
 		box-sizing: border-box;
-		font-family: "fenix";
-		font-weight: 500;
+		/* font-family: "fenix";
+		font-weight: 500; */
 	}
 
 	h1 {

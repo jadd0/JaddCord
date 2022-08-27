@@ -46,3 +46,4 @@ encrypt cookie
 
 FRIEND LIST: 
     whenever get friend list, populate data serverside
+    only store UUID for friend in FriendList.list

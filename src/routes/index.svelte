@@ -18,7 +18,7 @@
 </script>
 
 <body>
-	<Nav/>
+	<Nav />
 
 	<h1 id="one">JADD</h1>
 
@@ -28,8 +28,17 @@
 </body>
 
 <!-- <svelte:window on:scroll={scrollF}/> -->
-
 <style>
+	@import url("https://rsms.me/inter/inter.css");
+	* {
+		font-family: "Inter", sans-serif;
+		font-weight: 600;
+	}
+	@supports (font-variation-settings: normal) {
+		* {
+			font-family: "Inter var", sans-serif;
+		}
+	}
 	/* @font-face {
 		font-family: "fenix";
 		font-style: normal;
@@ -55,7 +64,7 @@
 			url(rubik-latin-400.woff2) format("woff");
 	} */
 
-  body {
+	body {
 		margin: 0;
 		padding: 0;
 		border: 0;
@@ -73,8 +82,8 @@
 		border: 0;
 		outline: 0;
 		box-sizing: border-box;
-		font-family: "fenix";
-		font-weight: 500;
+		/* font-family: "fenix";
+		font-weight: 500; */
 	}
 
 	h1 {
@@ -82,8 +91,9 @@
 		background-image: linear-gradient(
 			to left,
 			rgb(255, 255, 255),
-      rgb(0, 255, 221),
-      rgb(0, 41, 103)		);
+			rgb(0, 255, 221),
+			rgb(0, 41, 103)
+		);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		font-size: 200px;

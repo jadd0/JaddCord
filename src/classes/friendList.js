@@ -21,27 +21,20 @@ export class FriendList {
 		// TODO check if user exists
 		// TODO check that not already added
 
-		if (this.#findFriend(username, this.list)) return false
+		const user = this.#findFriend(username, userList)
 
+		if (!user) return false
 
-		const user = this.#findFriend(username, userList);
-
-		if (!user) return false;
-
-		const friend = new this.CreateFriend(user, userList);
+		const friend = new this.CreateFriend(user);
 
 		// console.log("FRIEND",friend)
 
-		if (friend.username == null) return false;
+		if (friend.name == null) return false;
 
 		// Adds the friend to the list and returns the username as conformation
 		this.list.push(friend);
-
-		
 		return friend.username;
 	}
-
-	addFriendONE(UUID, list) {}
 
 	// Deletes the friend from the list of friends
 	deleteFriend(username, list) {
@@ -60,9 +53,15 @@ export class FriendList {
 		this.list = newList
 
 		// console.log("UUID", h)
-
 		return true;
 	}
+
+	populateList(userList) {
+		for (let i = 0; i < this.list.length; i++) {
+			
+		}
+	}
+
 
 	// TODO when develop friend OOP more
 	blockFriend() {}
