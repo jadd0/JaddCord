@@ -67,16 +67,16 @@
 <!-- <svelte:window on:scroll={b} /> -->
 <style>
 
-@import url("https://rsms.me/inter/inter.css");
+/* @import url("https://rsms.me/inter/inter.css");
 	* {
 		font-family: "Inter", sans-serif;
-		font-weight: black;
+		font-weight: regu;
 	}
 	@supports (font-variation-settings: normal) {
 		* {
 			font-family: "Inter var", sans-serif;
 		}
-	}
+	} */
 	body {
 		margin: 0;
 		padding: 0;
