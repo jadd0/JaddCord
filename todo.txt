@@ -47,10 +47,3 @@ encrypt cookie
 FRIEND LIST: 
     whenever get friend list, populate data serverside
     only store UUID for friend in FriendList.list
-
-INTEGRATIONS:
-	spotify:
-    	share what you are listening to, playlists, songs etc locally
-        shows what you are listening to on your profile
-        (discord)
-    more to come
