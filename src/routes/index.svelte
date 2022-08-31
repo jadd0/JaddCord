@@ -22,23 +22,17 @@
 
 	<h1 id="one">JADD</h1>
 
-	<h2>A revolutionary<br />New way to Immerse<br />With the digital world</h2>
+	<h2>Lorem ipsum dolor sit amet.</h2>
 
 	<h1 id="two">CHAT</h1>
 </body>
 
 <!-- <svelte:window on:scroll={scrollF}/> -->
 <style>
-	@import url("https://rsms.me/inter/inter.css");
-	* {
-		font-family: "Inter", sans-serif;
-		font-weight: 600;
-	}
-	@supports (font-variation-settings: normal) {
-		* {
-			font-family: "Inter var", sans-serif;
-		}
-	}
+	@font-face {
+  font-family: 'New-Inter';
+  src: url('Inter.ttf');
+}
 	/* @font-face {
 		font-family: "fenix";
 		font-style: normal;
@@ -82,6 +76,14 @@
 		border: 0;
 		outline: 0;
 		box-sizing: border-box;
+		/* font-family: New-Inter; */
+		font-family: New-Inter;
+		font-weight: 500;
+
+		font-variation-settings: 'wght' 500;
+
+		letter-spacing: -2px;
+		
 		/* font-family: "fenix";
 		font-weight: 500; */
 	}
