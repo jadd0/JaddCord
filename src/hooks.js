@@ -37,7 +37,10 @@ list.subscribe((value) => {
 // if app and not auth, redirect
 
 export const handle = async ({ event, resolve}) => {
+<<<<<<< HEAD
 	console.log(resolve(event))
+=======
+>>>>>>> ce51547013404b244e8c477a7930e6826725da3e
 	const isApp = event.request.url.split('/')[3] === 'app';
 	// console.log(event.request.url)
 	// console.log(isApp)
