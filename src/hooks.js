@@ -37,33 +37,39 @@ list.subscribe((value) => {
 // if app and not auth, redirect
 
 export const handle = async ({ event, resolve}) => {
-<<<<<<< HEAD
-	console.log(resolve(event))
-=======
->>>>>>> ce51547013404b244e8c477a7930e6826725da3e
 	const isApp = event.request.url.split('/')[3] === 'app';
-	// console.log(event.request.url)
-	// console.log(isApp)
+
 	const isGet = event.request.method === 'GET';
-	const response = await resolve(event)
-	// console.log(isGet)
-	// console.log(isApp)
-	// console.log(response)
-	// return response
+	
 	if (!isApp) {
-		return response
+		return await resolve(event)
 	}
 
 	const cookie = event.request.headers.get("cookie");
 	// console.log(cookie)
 	const user = auth.checkJWT(cookie, userList);
 
+	if (user) {
+    event.locals.user = { user: user }
+  }
+
+
 	// console.log("hello", user)
-	if (!user && isGet) {
-		return new Response('Redirect', {status: 303, headers: { Location: '/login' }})
-	}
+	// if (!user && isGet) {
+	// 	return new Response('Redirect', {status: 303, headers: { Location: '/login' }})
+	// }
 	
 
 	// console.log(response)
-	return response
+	return await resolve(event)
+}
+
+export const getSession = ({ locals }) => {
+  if (!locals.user) return {}
+
+  return {
+    user: {
+      user: locals.user,
+    }
+  }
 }
