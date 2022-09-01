@@ -1,9 +1,11 @@
+throw new Error("@migration task: Update +server.js (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292701)");
+
 // Endpoint to add a friend
 
 // INIT
-import { Auth } from "../../../classes/userAuth.js";
-import { User } from "../../../classes/userClass.js";
-import { list } from "../../../store.js";
+import { Auth } from "../../../../classes/userAuth.js";
+import { User } from "../../../../classes/userClass.js";
+import { list } from "../../../../store.js";
 
 const auth = new Auth(User);
 
@@ -26,6 +28,10 @@ export async function post({ request }) {
 		};
 	}
 
+  user.profilePicture = 'BBALL.png'
+
+  console.log(user)
+
 	// Parses data and gets the username of user to add
 	const req = await request.json();
 	// console.log(user.username);
@@ -34,14 +40,14 @@ export async function post({ request }) {
 	if (user.username == req.username) {
 		return {
 			status: 404,
-			body: "You cannot add yourself, lonely",
+			body: "You cannot delete yourself, lonely",
 		};
 	}
 
 	// Tries to add user, if successful returns the username, else returns false
 	// console.log(req.username, user.username);
 
-	const friend = user.FriendList.addFriend(
+	const friend = user.FriendList.deleteFriend(
 		req.username,
 		userList,
 		user.username
@@ -56,14 +62,16 @@ export async function post({ request }) {
 			body: "No user found",
 		};
 	}
+  
+	const userB = userList.find((user) => user.username === req.username);
 
-	const userB = userList.find((user) => user.username === friend);
+  console.log("USERB", userB)
 
-	userB.FriendList.addFriend(user.username, userList);
+	userB.FriendList.deleteFriend(user.username, userList);
 
 	// Else, retuns OK to indicate the friend was added and the username as a conformation
 	return {
 		status: 200,
-		body: `User ${userB.username} added successfully`,
+		body: `User deleted successfully`,
 	};
 }

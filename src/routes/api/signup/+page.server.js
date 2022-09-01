@@ -1,8 +1,10 @@
-import { list } from '../../store.js';
-import { User } from '../../classes/userClass.js'
-import { Auth } from '../../classes/userAuth.js';
-import { FriendList } from '../../classes/friendList.js'
-import { CreateFriend } from '../../classes/makeFriend.js';
+throw new Error("@migration task: Update +server.js (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292701)");
+
+import { list } from '../../../store.js';
+import { User } from '../../../classes/userClass.js'
+import { Auth } from '../../../classes/userAuth.js';
+import { FriendList } from '../../../classes/friendList.js'
+import { CreateFriend } from '../../../classes/makeFriend.js';
 
 const auth = new Auth(User);
 
@@ -13,7 +15,7 @@ list.subscribe(value => {
 });
 
 
-/** @type {import('./__types/[id]').RequestHandler} */
+/** @type {import('./$types').RequestHandler} */
 export async function post({ request }) {
 	const req = await request.json();
 	const obj = {

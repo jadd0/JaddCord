@@ -1,6 +1,6 @@
 <script>
 
-	import Nav from "../components/nav.svelte";
+	import Nav from "../../components/nav.svelte";
 	let email;
 	let password;
 

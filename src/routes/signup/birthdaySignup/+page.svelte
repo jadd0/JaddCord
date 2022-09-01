@@ -1,4 +1,6 @@
-<script>
+<!-- <script>
+  throw new Error("@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)");
+
   export let email = ""
 </script>
 
@@ -7,6 +9,8 @@
 <section>
   <h1>Email</h1>
   <input type="email" id="email" placeholder="email" bind:value={email} />
+
+  <button>Next</button>
 </section>
 
 
@@ -25,4 +29,4 @@
 		font-weight: 500;
 	}
 
-</style>
+</style> -->

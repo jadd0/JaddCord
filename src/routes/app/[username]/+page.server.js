@@ -1,3 +1,5 @@
+throw new Error("@migration task: Update +page.server.js (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292699)");
+
 import { Auth } from '../../../classes/userAuth.js'
 import { User } from '../../../classes/userClass.js'
 import { list } from '../../../store.js'

@@ -1,14 +1,14 @@
 <script>
-  export let password = ""
+  throw new Error("@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)");
+
+  export let email = ""
 </script>
 
 
 
 <section>
-  <h1>Password</h1>
-  <input type="password" id="password" placeholder="password" bind:value={password} />
-
-  <button>Next</button>
+  <h1>Email</h1>
+  <input type="email" id="email" placeholder="email" bind:value={email} />
 </section>
 
 
