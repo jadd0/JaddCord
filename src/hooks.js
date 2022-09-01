@@ -65,6 +65,7 @@ export const handle = async ({ event, resolve}) => {
 }
 
 export const getSession = ({ locals }) => {
+	console.log(locals)
   if (!locals.user) return {}
 
   return {
