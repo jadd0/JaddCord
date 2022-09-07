@@ -14,7 +14,6 @@ export class User {
 		this.online = online || false;
 		this.authKey = authKey || this.keyGenerator();
 		this.FriendList = new FriendList(CreateFriend);
-
 	}
 
 	login() {}
